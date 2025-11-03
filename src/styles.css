@@ -39,11 +39,8 @@ body {
   box-shadow: var(--shadow-s);
   font: var(--nav-cat-font);
 }
-.nav-element-cat {
-  font: var(--nav-cat-font);
-  margin-top: 10rem;
-}
-.category:hover{
+
+.category-card:hover{
   box-shadow: var(--shadow-l);
   cursor: pointer;
 }
@@ -56,7 +53,7 @@ nav{
   margin: 0 0.5rem;
   padding: 0.7rem 0.7rem;
 }
-.category{
+.category-card{
   background: var(--bg-light);
   box-shadow: var(--shadow-s);
   border-radius: 0.5rem;
