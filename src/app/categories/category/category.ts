@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-category',
-  imports: [],
+  imports: [
+    NgOptimizedImage
+  ],
   templateUrl: './category.html',
   styleUrl: './category.css'
 })

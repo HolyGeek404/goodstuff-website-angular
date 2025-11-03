@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import {CategoryCard} from '../categories/category-card/category-card';
+import {Category} from '../categories/category/category';
 
 @Component({
   selector: 'app-home',
   imports: [
-    CategoryCard
+    CategoryCard,
+    Category
   ],
   templateUrl: './home.html',
   styleUrl: './home.css'

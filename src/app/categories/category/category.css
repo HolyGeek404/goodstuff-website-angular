@@ -1,5 +1,14 @@
-.product-test{
+.product-card-test{
   width: 100px;
   height: 300px;
-  background: var(--bg-dark);
+  background: #fff;
+  border-radius: 0.5rem;
+
+}
+
+.product-test{
+  background: var(--bg);
+  gap: 1rem;
+  border-radius: 0.5rem;
+
 }
