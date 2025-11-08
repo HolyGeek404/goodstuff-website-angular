@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Component, inject, signal} from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
+import {GoodStuffFunctionsService} from '../../../services/GoodStuffFunctionsService';
+import {CpuProduct} from '../../../models/product/CpuModel';
 
 @Component({
   selector: 'app-category',
@@ -11,7 +12,14 @@ import {NgOptimizedImage} from '@angular/common';
   styleUrl: './category.css'
 })
 export class Category {
-  constructor(private route: ActivatedRoute) {
+  private cpuService = inject(GoodStuffFunctionsService);
+  cpus = signal<CpuProduct[]>([]);
+
+  constructor() {
+    this.cpuService.getCpus().subscribe({
+      next: (data) => this.cpus.set(data),
+      error: (err) => console.error('Error loading CPUs:', err),
+    });
   }
 
 }
