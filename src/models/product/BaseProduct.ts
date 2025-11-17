@@ -2,7 +2,7 @@ export interface BaseProduct {
   name: string;
   team: string;
   price: string;
-  productImg?: string;
+  productImg: string;
   category: string;
   id: string;
   productId: string;

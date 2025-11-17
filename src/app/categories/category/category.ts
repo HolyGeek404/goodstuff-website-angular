@@ -1,33 +1,34 @@
-import {Component, inject, signal} from '@angular/core';
-import {NgOptimizedImage} from '@angular/common';
-import {GoodStuffFunctionsService} from '../../../services/GoodStuffFunctionsService';
-import {Cpu} from '../../../models/product/Cpu';
-import {ActivatedRoute} from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import { GoodStuffFunctionsService } from '../../../services/GoodStuffFunctionsService';
+import { ActivatedRoute } from '@angular/router';
+import { ProductTypes } from '../../../models/product/ProductTypes';
+import {BaseProduct} from '../../../models/product/BaseProduct';
 
 @Component({
   selector: 'app-category',
-  imports: [
-    NgOptimizedImage
-  ],
+  standalone: true,
+  imports: [NgOptimizedImage],
   templateUrl: './category.html',
-  styleUrl: './category.css'
+  styleUrls: ['./category.css']
 })
 export class Category {
-  private cpuService = inject(GoodStuffFunctionsService);
-  // cpus = signal<Cpu[]>([]);
-  //
-  // constructor() {
-  //   this.cpuService.getCpus().subscribe({
-  //     next: (data) => this.cpus.set(data),
-  //     error: (err) => console.error('Error loading CPUs:', err),
-  //   });
-  // }
+  private functionsService = inject(GoodStuffFunctionsService);
 
-  category = signal('');
+  products = signal<BaseProduct[]>([]);
+  category = signal<ProductTypes>(ProductTypes.CPU);
 
   constructor(private route: ActivatedRoute) {
     this.route.paramMap.subscribe(p => {
-      this.category.set(p.get('category')!);
+      const cat = p.get('category') as keyof typeof ProductTypes;
+      const productCategory = ProductTypes[cat];
+      this.category.set(productCategory);
+
+      // Fetch products whenever category changes
+      this.functionsService.getProducts(productCategory).subscribe({
+        next: (data) => this.products.set(data),
+        error: (err) => console.error(`Error loading products for ${productCategory}:`, err)
+      });
     });
   }
 }

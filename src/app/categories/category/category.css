@@ -2,6 +2,7 @@
   background: #fff;
   border-radius: 0.5rem;
   min-width: 20rem;
+  max-width: 20rem;
 }
 
 .product-test{
