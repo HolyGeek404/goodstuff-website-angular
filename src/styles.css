@@ -73,4 +73,7 @@ nav{
   width: 30rem
 }
 
-
+a{
+  text-decoration: none;
+  color: inherit;
+}
