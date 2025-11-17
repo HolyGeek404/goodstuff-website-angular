@@ -4,11 +4,12 @@ import { GoodStuffFunctionsService } from '../../../services/GoodStuffFunctionsS
 import { ActivatedRoute } from '@angular/router';
 import { ProductTypes } from '../../../models/product/ProductTypes';
 import {BaseProduct} from '../../../models/product/BaseProduct';
+import {ProductCardDetails} from '../details/product-card-details/product-card-details.component';
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, ProductCardDetails],
   templateUrl: './category.html',
   styleUrls: ['./category.css']
 })

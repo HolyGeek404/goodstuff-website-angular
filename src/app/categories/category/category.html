@@ -9,10 +9,7 @@
         alt="{{ product.name }}"
       />
       <div class="d-flex flex-column">
-        <span class="product-card-text-main">{{ product.name }}</span>
-        <span class="product-card-text-secondary">Team: {{ product.team }}</span>
-        <span class="product-card-text-secondary">Category: {{ product.category }}</span>
-        <span class="product-card-text-main">{{ product.price }} zł</span>
+        <app-product-card-details [product]="product" [category]="category()"/>
       </div>
     </div>
   }
