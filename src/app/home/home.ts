@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import {CategoryCard} from '../categories/category-card/category-card';
-import {Category} from '../categories/category/category';
+import {ProductTypes} from '../../models/product/ProductTypes';
+import {Nav} from '../nav/nav';
 
 @Component({
   selector: 'app-home',
   imports: [
     CategoryCard,
-    Category
+    Nav
   ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
 export class Home {
-  categories = ["CPU","GPU","RAM","MOBO","PSU","SSD","CASE","COOLER"];
+  categories = Object.values(ProductTypes);
 }

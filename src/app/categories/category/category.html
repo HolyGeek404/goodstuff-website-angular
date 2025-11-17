@@ -1,21 +1,22 @@
 <div class="d-flex flex-wrap product-test justify-content-center p-3 mt-5">
-  @for (cpu of cpus(); track cpu.id)
-  {
-    <div class="p-3 flex-column product-card-test">
-      <img
-        [ngSrc]="cpu.productImg"
-        width="240"
-        height="200"
-        alt="{{ cpu.name }}"
-      />
-      <div class="d-flex flex-column">
-        <span class="product-card-text-main">{{ cpu.name }}</span>
-        <span class="product-card-text-secondary">Architecture: {{ cpu.architecture }}</span>
-        <span class="product-card-text-secondary">Cores: {{ cpu.cores }}</span>
-        <span class="product-card-text-secondary">Threads: {{ cpu.threads }}</span>
-        <span class="product-card-text-secondary">Socket: {{ cpu.socket }}</span>
-        <span class="product-card-text-main">{{ cpu.price }} zł</span>
-      </div>
-    </div>
-  }
+<!--  @for (cpu of cpus(); track cpu.id)-->
+<!--  {-->
+<!--    <div class="p-3 flex-column product-card-test">-->
+<!--      <img-->
+<!--        [ngSrc]="cpu.productImg"-->
+<!--        width="240"-->
+<!--        height="200"-->
+<!--        alt="{{ cpu.name }}"-->
+<!--      />-->
+<!--      <div class="d-flex flex-column">-->
+<!--        <span class="product-card-text-main">{{ cpu.name }}</span>-->
+<!--        <span class="product-card-text-secondary">Architecture: {{ cpu.architecture }}</span>-->
+<!--        <span class="product-card-text-secondary">Cores: {{ cpu.cores }}</span>-->
+<!--        <span class="product-card-text-secondary">Threads: {{ cpu.threads }}</span>-->
+<!--        <span class="product-card-text-secondary">Socket: {{ cpu.socket }}</span>-->
+<!--        <span class="product-card-text-main">{{ cpu.price }} zł</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  }-->
+  hi {{category()}}
 </div>

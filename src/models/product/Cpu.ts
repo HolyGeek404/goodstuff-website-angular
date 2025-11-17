@@ -1,4 +1,6 @@
-export interface CpuProduct {
+import {BaseProduct} from './BaseProduct';
+
+export interface Cpu extends BaseProduct {
   family: string;
   series: string;
   socket: string;
@@ -17,13 +19,4 @@ export interface CpuProduct {
   tdp: string;
   additionalInfo: string;
   includedCooler: string;
-  name: string;
-  team: string;
-  price: string;
-  productImg: string;
-  category: string;
-  id: string;
-  productId: string;
-  warranty: string;
-  producerCode: string | null;
 }

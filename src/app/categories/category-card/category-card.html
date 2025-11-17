@@ -1,4 +1,7 @@
-<div class="category-card d-grid justify-content-center align-items-center ">
-  <img width="96" height="96" ngSrc="{{categoryImgPath()}}" alt="categoryIcon">
-  <span class="d-block text-center">{{category()}}</span>
-</div>
+<a [routerLink]="['products',category()]">
+  <div class="category-card d-grid justify-content-center align-items-center ">
+    <img width="96" height="96" ngSrc="{{categoryImgPath()}}" alt="categoryIcon">
+    <span class="d-block text-center">{{category()}}</span>
+  </div>
+
+</a>

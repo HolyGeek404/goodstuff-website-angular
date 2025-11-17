@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {CpuProduct} from '../models/product/CpuModel';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
+import {BaseProduct} from '../models/product/BaseProduct';
 
 @Injectable({ providedIn: 'root' })
 export class GoodStuffFunctionsService {
-  private apiUrl = 'http://localhost:7257/api/HelloWorld'; // Azure Function
+  private baseUrl = 'http://localhost:7257/api/product'; // Azure Function base URL
 
   constructor(private http: HttpClient) {}
 
-  getCpus(): Observable<CpuProduct[]> {
-    return this.http.get<CpuProduct[]>(this.apiUrl);
+  /**
+   * Generic method to fetch any product category.
+   *
+   * Example: getProductsByCategory<Gpu>('Gpus')
+   */
+  getProductsByCategory<T extends BaseProduct>(category: string): Observable<T[]> {
+    return this.http.get<T[]>(`${this.baseUrl}/${category}`, {});
   }
 }
