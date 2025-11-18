@@ -1,0 +1,9 @@
+@if (category() === ProductTypes.GPU) {
+  <app-gpu-spec-details [product]="product()" />
+}
+@if (category() === ProductTypes.CPU) {
+  <app-cpu-spec-details [product]="product()"/>
+}
+@if (category() === ProductTypes.COOLER) {
+  <app-cooler-spec-details [product]="product()" />
+}

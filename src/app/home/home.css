@@ -1,0 +1,4 @@
+.home-element-cat {
+  font: var(--nav-cat-font);
+  gap: 1rem;
+}
