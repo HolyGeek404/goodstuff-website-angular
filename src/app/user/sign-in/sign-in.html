@@ -1,0 +1,28 @@
+<div class="d-flex col-12 justify-content-center">
+  <div class="sign-in p-3">
+    <h4 class="border-bottom pb-1">Sign In</h4>
+    <div class="row">
+      <form action="/user/signin" method="post" class="col-6 border-right float-left">
+
+        <div class="form-group py-2">
+          <label>Email</label>
+          <input name="Email" type="email" class="form-control" required/>
+        </div>
+
+        <div class="form-group py-2">
+          <label>Password</label>
+          <input name="Password" type="password" class="form-control" required/>
+        </div>
+
+        <button type="submit" class="btn btn-primary my-2 font-weight-bold">Sign In</button>
+      </form>
+      <div class="col-6 float-left">
+        <h4>Don't have account yet?</h4>
+        <h5>It's good time to Sign Up!</h5>
+        You don't have choice anyway, without it you can't buy anything.
+        <i class="fa-regular fa-face-smile-wink"></i>
+        <a href="@Routing.SignUp" class="btn btn-primary mt-2 font-weight-bold d-block">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</div>
