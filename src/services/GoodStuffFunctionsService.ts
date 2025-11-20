@@ -25,4 +25,8 @@ export class GoodStuffFunctionsService {
         return this.http.get<Cpu[]>(`${this.baseUrl}/CPU`);
     }
   }
+
+  signIn(email: string, password: string) {
+
+  }
 }
