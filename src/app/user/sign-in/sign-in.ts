@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {GoodStuffFunctionsService} from '../../../services/GoodStuffFunctionsService';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,6 +12,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
   styleUrl: './sign-in.css'
 })
 export class SignIn {
+  private functionsService = inject(GoodStuffFunctionsService);
+
   signInForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.pattern(new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"))])
@@ -30,6 +33,10 @@ export class SignIn {
 
   onSubmit() {
     if (this.validate() && this.signInForm.valid) {
+      this.functionsService.signIn(this.signInForm.controls.email.value!, this.signInForm.controls.password.value!).subscribe({
+        next: (data) => console.log(data),
+        error: (err) => console.error(`Error signing in.`, err)
+      });
 
     }
   }

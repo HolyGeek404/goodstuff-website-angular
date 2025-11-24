@@ -9,24 +9,24 @@ import {BaseProduct} from '../models/product/BaseProduct';
 
 @Injectable({ providedIn: 'root' })
 export class GoodStuffFunctionsService {
-  private baseUrl = 'http://localhost:7257/api/proxy/product';
+  private baseUrl = 'http://localhost:7257/api/proxy/';
 
   constructor(private http: HttpClient) {}
 
   getProducts(category: ProductTypes): Observable<BaseProduct[]> {
     switch (category) {
       case ProductTypes.CPU:
-        return this.http.get<Cpu[]>(`${this.baseUrl}/CPU`);
+        return this.http.get<Cpu[]>(`${this.baseUrl}product/CPU`);
       case ProductTypes.GPU:
-        return this.http.get<Gpu[]>(`${this.baseUrl}/GPU`);
+        return this.http.get<Gpu[]>(`${this.baseUrl}product/GPU`);
       case ProductTypes.COOLER:
-        return this.http.get<Cooler[]>(`${this.baseUrl}/COOLER`);
+        return this.http.get<Cooler[]>(`${this.baseUrl}product/COOLER`);
       default:
-        return this.http.get<Cpu[]>(`${this.baseUrl}/CPU`);
+        return this.http.get<Cpu[]>(`${this.baseUrl}product/CPU`);
     }
   }
 
-  signIn(email: string, password: string) {
-
+  signIn(email: string, password: string): Observable<any> {
+    return  this.http.post(`${this.baseUrl}user/signin`, {email, password})
   }
 }
