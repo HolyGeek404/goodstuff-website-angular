@@ -6,6 +6,7 @@ import {Gpu} from '../models/product/Gpu';
 import {ProductTypes} from '../models/product/ProductTypes';
 import {Cooler} from '../models/product/Cooler';
 import {BaseProduct} from '../models/product/BaseProduct';
+import {User} from '../models/user/user';
 
 @Injectable({ providedIn: 'root' })
 export class GoodStuffFunctionsService {
@@ -26,7 +27,7 @@ export class GoodStuffFunctionsService {
     }
   }
 
-  signIn(email: string, password: string): Observable<any> {
-    return  this.http.post(`${this.baseUrl}user/signin`, {email, password})
+  signIn(email: string, password: string): Observable<User> {
+    return  this.http.post<User>(`${this.baseUrl}user/signin`, {email, password})
   }
 }
