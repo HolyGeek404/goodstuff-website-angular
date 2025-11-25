@@ -15,4 +15,8 @@ export class Dashboard {
   constructor() {
     this.user = this.userSession.getUser();
   }
+
+  signOut(): void {
+    this.userSession.signOut();
+  }
 }
