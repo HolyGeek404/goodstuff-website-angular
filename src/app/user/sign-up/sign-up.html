@@ -1,0 +1,55 @@
+<div class="d-flex col-12 justify-content-center">
+  <div class="sign-up p-3">
+    <h4 class="border-bottom pb-1">Sign Up</h4>
+    <div class="row">
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="col-6 border-right float-left">
+
+        <div class="form-group py-2">
+          <label>Name</label>
+          <input formControlName="name" name="name" type="text" class="form-control" required/>
+        </div>
+
+        <div class="form-group py-2">
+          <label>Surname</label>
+          <input formControlName="surname" name="surname" type="text" class="form-control" required/>
+        </div>
+
+
+        <div class="form-group py-2">
+          <label>Email</label>
+          <input formControlName="email" name="email" type="email" class="form-control" required/>
+        </div>
+
+        <div class="form-group py-2">
+          <label>Password</label>
+          <input formControlName="password" name="password" type="password" class="form-control" required/>
+        </div>
+
+        <div class="form-group py-2">
+          <label>Confirm Password</label>
+          <input formControlName="confirmPassword" name="confirmPassword" type="password" class="form-control" required/>
+        </div>
+
+
+        @if (this.errors.length != 0) {
+          <div class="alert alert-danger">
+            <ul>
+              @for (error of errors; track error)
+              {
+                <li>{{error}}</li>
+              }
+            </ul>
+          </div>
+        }
+
+        <button type="submit" class="btn btn-primary my-2 font-weight-bold">Sign Up</button>
+      </form>
+
+      <div class="col-6 float-left">
+        <h4>Already have an account?</h4>
+        <h5>Sign In instead!</h5>
+        <a [routerLink]=['user/sign-in'] class="btn btn-primary mt-2 font-weight-bold d-block">Sign In</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,13 +2,14 @@ import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {GoodStuffFunctionsService} from '../../../services/GoodStuffFunctionsService';
 import {UserSessionService} from '../../../services/UserSessionService';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
   imports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './sign-in.html',
   styleUrl: './sign-in.css'
