@@ -1,0 +1,6 @@
+.sign-up {
+  margin-top: 10rem;
+  border: 0.6rem solid var(--bg);
+  border-radius: 0.5rem;
+  background: var(--bg-light);
+}
