@@ -17,6 +17,12 @@ export class SignUp {
   private functionsService = inject(GoodStuffFunctionsService);
 
   constructor(private router: Router) {
+
+  }
+  ngOnInit() {
+    this.router.navigate(['/user/sign-in'], {
+      state: { message: 'Account created! Check your email for the activation link.' }
+    });
   }
 
   signUpForm = new FormGroup({
@@ -63,9 +69,13 @@ export class SignUp {
       }
       console.log(signUp);
       this.functionsService.signUp(signUp).subscribe({
-        next: () => this.router.navigate(['/user/sign-in']),
-        error: () => this.errors.push("Services temporary unavailable")
+        next: () =>
+          this.router.navigate(['/user/sign-in'], {
+            state: { message: 'Account created! Check your email for the activation link.' }
+          }),
+        error: () => this.errors.push("Services temporarily unavailable")
       });
+
     }
   }
 

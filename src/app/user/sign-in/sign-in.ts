@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, effect, inject} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {GoodStuffFunctionsService} from '../../../services/GoodStuffFunctionsService';
 import {UserSessionService} from '../../../services/UserSessionService';
@@ -17,8 +17,17 @@ import {Router, RouterLink} from '@angular/router';
 export class SignIn {
   private functionsService = inject(GoodStuffFunctionsService);
   private userSession = inject(UserSessionService)
+  public stateMsg: string | null = null;
 
   constructor(private router: Router) {
+  }
+
+  ngOnInit() {
+    const state = history.state as { message?: string };
+
+    if (state?.message) {
+      this.stateMsg = state.message;
+    }
   }
 
   signInForm = new FormGroup({

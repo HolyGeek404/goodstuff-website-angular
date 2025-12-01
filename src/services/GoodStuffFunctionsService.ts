@@ -32,7 +32,7 @@ export class GoodStuffFunctionsService {
     return  this.http.post<User>(`${this.baseUrl}user/signin`, {email, password})
   }
   signOut(sessionId: string): Observable<boolean> {
-    return this.http.post<boolean>(`${this.baseUrl}user/signout`, {sessionId});
+    return this.http.post<boolean>(`${this.baseUrl}user/signout`, sessionId);
   }
 
   signUp(signUp: SignUpRequest): Observable<boolean> {
