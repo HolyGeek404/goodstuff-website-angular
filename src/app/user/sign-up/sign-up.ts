@@ -19,11 +19,6 @@ export class SignUp {
   constructor(private router: Router) {
 
   }
-  ngOnInit() {
-    this.router.navigate(['/user/sign-in'], {
-      state: { message: 'Account created! Check your email for the activation link.' }
-    });
-  }
 
   signUpForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
