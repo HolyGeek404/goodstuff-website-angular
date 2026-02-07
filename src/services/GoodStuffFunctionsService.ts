@@ -6,13 +6,13 @@ import {Gpu} from '../models/product/Gpu';
 import {ProductTypes} from '../models/product/ProductTypes';
 import {Cooler} from '../models/product/Cooler';
 import {BaseProduct} from '../models/product/BaseProduct';
-import {User} from '../models/user/user';
 import {SignUpRequest} from '../models/user/SignUpRequest';
 import {AccountVerificationRequest} from '../models/user/AccountVerification';
 
 @Injectable({ providedIn: 'root' })
 export class GoodStuffFunctionsService {
   private baseUrl = 'http://localhost:7257/api/proxy/';
+  private authOptions = { withCredentials: true, responseType: 'text' as const };
 
   constructor(private http: HttpClient) {}
 
@@ -29,11 +29,11 @@ export class GoodStuffFunctionsService {
     }
   }
 
-  signIn(email: string, password: string): Observable<User> {
-    return  this.http.post<User>(`${this.baseUrl}user/signin`, {email, password})
+  signIn(email: string, password: string): Observable<string> {
+    return this.http.post(`${this.baseUrl}user/signin`, {email, password}, this.authOptions);
   }
-  signOut(sessionId: string): Observable<boolean> {
-    return this.http.post<boolean>(`${this.baseUrl}user/signout`, sessionId);
+  signOut(): Observable<string> {
+    return this.http.post(`${this.baseUrl}user/signout`, {}, this.authOptions);
   }
   signUp(signUp: SignUpRequest): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}user/signup`, signUp);

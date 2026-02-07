@@ -1,7 +1,6 @@
-import {Component, effect, inject} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {GoodStuffFunctionsService} from '../../../services/GoodStuffFunctionsService';
-import {UserSessionService} from '../../../services/UserSessionService';
 import {Router, RouterLink} from '@angular/router';
 
 @Component({
@@ -16,7 +15,6 @@ import {Router, RouterLink} from '@angular/router';
 })
 export class SignIn {
   private functionsService = inject(GoodStuffFunctionsService);
-  private userSession = inject(UserSessionService)
   public stateMsg: string | null = null;
 
   constructor(private router: Router) {
@@ -50,8 +48,7 @@ export class SignIn {
   onSubmit() {
     if (this.validate() && this.signInForm.valid) {
       this.functionsService.signIn(this.signInForm.controls.email.value!, this.signInForm.controls.password.value!).subscribe({
-        next: (data) => {
-          this.userSession.setUser(data)
+        next: () => {
           this.router.navigate(['/user/dashboard']);
         },
         error: (err) => console.error(`Error signing in.`, err)

@@ -1,7 +1,6 @@
 import {inject, Injectable, signal} from '@angular/core';
 import {User} from '../models/user/user';
 import {GoodStuffFunctionsService} from './GoodStuffFunctionsService';
-import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
 
@@ -19,15 +18,13 @@ export class UserSessionService {
   }
 
   signOut(): void {
-    this.functionsService.signOut(this.user()?.sessionId!).subscribe({
-      next: (signedOut) => {
-        console.log(signedOut);
-        if (signedOut)        {
-          this.user.set(null);
-          sessionStorage.removeItem(this.STORAGE_KEY);
-          this.router.navigate(['/']);
-        }
-      }
+    this.functionsService.signOut().subscribe({
+      next: () => {
+        this.user.set(null);
+        sessionStorage.removeItem(this.STORAGE_KEY);
+        this.router.navigate(['/']);
+      },
+      error: (err) => console.error(`Error signing out.`, err)
     });
   }
 
