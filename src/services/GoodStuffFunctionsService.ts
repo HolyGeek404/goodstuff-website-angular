@@ -11,7 +11,7 @@ import {AccountVerificationRequest} from '../models/user/AccountVerification';
 
 @Injectable({ providedIn: 'root' })
 export class GoodStuffFunctionsService {
-  private baseUrl = 'http://localhost:7257/api/proxy/';
+  private baseUrl = 'https://localhost:7100/gateway/';
   private authOptions = { withCredentials: true, responseType: 'text' as const };
 
   constructor(private http: HttpClient) {}
