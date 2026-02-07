@@ -1,0 +1,81 @@
+﻿services:
+  user-api:
+    image: goodstuff-user-api:latest
+    container_name: goodstuff-user-api-container
+    build:
+      context: ./GoodStuff_UserApi
+      dockerfile: Dockerfile
+    env_file:
+      - ./.env
+    environment:
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/https.pfx
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ${CERT_PASSWORD}
+      AZURE_TENANT_ID: ${AZURE_TENANT_ID}
+      AZURE_CLIENT_ID: ${USER_API_AZURE_CLIENT_ID}
+      AZURE_CLIENT_SECRET: ${USER_API_AZURE_CLIENT_SECRET}
+      ASPNETCORE_URLS: https://+:${CONTAINER_HTTPS_PORT}
+      ASPNETCORE_HTTPS_PORTS: ${CONTAINER_HTTPS_PORT}
+    ports:
+      - "${USER_API_PORT}:${CONTAINER_HTTPS_PORT}"
+    volumes:
+      - ${SHARED_CERT}:/https/https.pfx:ro
+    networks:
+      - goodstuff-network
+    restart: unless-stopped
+
+  product-api:
+    image: goodstuff-product-api:latest
+    container_name: goodstuff-product-api-container
+    build:
+      context: ./GoodStuff_ProductApi
+      dockerfile: Dockerfile
+    env_file:
+      - ./.env
+    environment:
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/https.pfx
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ${CERT_PASSWORD}
+      AZURE_TENANT_ID: ${AZURE_TENANT_ID}
+      AZURE_CLIENT_ID: ${PRODUCT_API_AZURE_CLIENT_ID}
+      AZURE_CLIENT_SECRET: ${PRODUCT_API_AZURE_CLIENT_SECRET}
+      ASPNETCORE_URLS: https://+:${CONTAINER_HTTPS_PORT}
+      ASPNETCORE_HTTPS_PORTS: ${CONTAINER_HTTPS_PORT}
+    ports:
+      - "${PRODUCT_API_PORT}:${CONTAINER_HTTPS_PORT}"
+    volumes:
+      - ${SHARED_CERT}:/https/https.pfx:ro
+    networks:
+      - goodstuff-network
+    restart: unless-stopped
+
+  gateway-api:
+    image: goodstuff-apigateway:latest
+    container_name: goodstuff-apigateway-container
+    build:
+      context: ./GoodStuff.ApiGateway
+      dockerfile: Dockerfile
+    env_file:
+      - ./.env
+    ports:
+      - "${GATEWAY_API_PORT}:${CONTAINER_HTTPS_PORT}"
+    volumes:
+      - ${SHARED_CERT}:/https/https.pfx:ro
+    networks:
+      - goodstuff-network
+    restart: unless-stopped
+
+
+  website:
+    image: goodstuff-website:latest
+    container_name: goodstuff-website-container
+    build:
+      context: ../WebstormProjects/GoodStuff_Website_Angular
+      dockerfile: Dockerfile
+    ports:
+      - "${WEBSITE_PORT}:${WEBSITE_PORT}"
+    networks:
+      - goodstuff-network
+    restart: unless-stopped
+
+networks:
+  goodstuff-network:
+    driver: bridge

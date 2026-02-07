@@ -11,7 +11,7 @@ import {AccountVerificationRequest} from '../models/user/AccountVerification';
 
 @Injectable({ providedIn: 'root' })
 export class GoodStuffFunctionsService {
-  private baseUrl = 'https://localhost:7100/gateway/';
+  private baseUrl = '/api/gateway/';
   private authOptions = { withCredentials: true, responseType: 'text' as const };
 
   constructor(private http: HttpClient) {}
@@ -19,7 +19,7 @@ export class GoodStuffFunctionsService {
   getProducts(category: ProductTypes): Observable<BaseProduct[]> {
     switch (category) {
       case ProductTypes.CPU:
-        return this.http.get<Cpu[]>(`${this.baseUrl}product/CPU`);
+        return this.http.get<Cpu[]>(`${this.baseUrl}Product/CPU`);
       case ProductTypes.GPU:
         return this.http.get<Gpu[]>(`${this.baseUrl}product/GPU`);
       case ProductTypes.COOLER:
