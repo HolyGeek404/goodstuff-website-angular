@@ -1,2 +1,72 @@
-<p>{{user?.name ?? 'Signed in'}}</p>
-<button class="btn btn-primary" (click)="signOut()">Sign Out</button>
+<section class="dashboard">
+  <header class="dashboard__hero">
+    <div>
+      <p class="dashboard__eyebrow">Your account</p>
+      <h1>Hey {{user?.name || user?.email || 'there'}}</h1>
+      <p class="dashboard__subhead">Manage your profile, track orders, and keep everything tidy.</p>
+    </div>
+    <button class="dashboard__signout" (click)="signOut()">Sign out</button>
+  </header>
+
+  <div class="dashboard__grid">
+    <nav class="dashboard__nav" aria-label="User dashboard">
+      @for (panel of panels; track panel) {
+        <button
+          class="dashboard__nav-item"
+          [class.is-active]="activePanel === panel"
+          (click)="selectPanel(panel)">
+          {{panel}}
+        </button>
+      }
+    </nav>
+
+    <section class="dashboard__panel">
+      @switch (activePanel) {
+        @case ('Overview') {
+          <div class="panel">
+            <h2>Overview</h2>
+            <p>Quick snapshot of your account and recent activity.</p>
+            <div class="panel__cards">
+              <div class="panel__card">
+                <h3>Profile</h3>
+                <p>Email: {{user?.email || 'Not set'}}</p>
+              </div>
+              <div class="panel__card">
+                <h3>Orders</h3>
+                <p>No recent orders yet. When you place one, it will show up here.</p>
+              </div>
+            </div>
+          </div>
+        }
+        @case ('Orders') {
+          <div class="panel">
+            <h2>Orders</h2>
+            <p>Track status, invoices, and shipping details.</p>
+            <div class="panel__empty">No orders found.</div>
+          </div>
+        }
+        @case ('Settings') {
+          <div class="panel">
+            <h2>Settings</h2>
+            <p>Update your preferences and contact details.</p>
+            <div class="panel__empty">Settings coming soon.</div>
+          </div>
+        }
+        @case ('Security') {
+          <div class="panel">
+            <h2>Security</h2>
+            <p>Manage password and login methods.</p>
+            <div class="panel__empty">Security tools coming soon.</div>
+          </div>
+        }
+        @case ('Support') {
+          <div class="panel">
+            <h2>Support</h2>
+            <p>Need help? Reach out to our team.</p>
+            <div class="panel__empty">Support center coming soon.</div>
+          </div>
+        }
+      }
+    </section>
+  </div>
+</section>
