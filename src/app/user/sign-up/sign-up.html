@@ -1,55 +1,64 @@
-<div class="d-flex col-12 justify-content-center">
-  <div class="sign-up p-3">
-    <h4 class="border-bottom pb-1">Sign Up</h4>
-    <div class="row">
-      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="col-6 border-right float-left">
+<section class="auth">
+  <div class="auth__shell auth__shell--wide">
+    <div class="auth__hero">
+      <p class="auth__eyebrow">Create account</p>
+      <h1>Build your GoodStuff profile</h1>
+      <p class="auth__subhead">Save builds, track orders, and get personalized picks.</p>
+      <div class="auth__stat">
+        <span>Saved configs</span>
+        <span>Faster checkout</span>
+        <span>Smart alerts</span>
+      </div>
+      <a [routerLink]="['/user/sign-in']" class="auth__ghost">Sign in instead</a>
+    </div>
 
-        <div class="form-group py-2">
-          <label>Name</label>
-          <input formControlName="name" name="name" type="text" class="form-control" required/>
+    <div class="auth__card">
+      <h2>Sign Up</h2>
+      <p class="auth__hint">It takes less than a minute.</p>
+
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div class="auth__grid">
+          <div>
+            <label class="auth__label">Name</label>
+            <input formControlName="name" name="name" type="text" class="auth__input" placeholder="First name" required/>
+          </div>
+          <div>
+            <label class="auth__label">Surname</label>
+            <input formControlName="surname" name="surname" type="text" class="auth__input" placeholder="Last name" required/>
+          </div>
         </div>
 
-        <div class="form-group py-2">
-          <label>Surname</label>
-          <input formControlName="surname" name="surname" type="text" class="form-control" required/>
+        <label class="auth__label">Email</label>
+        <input formControlName="email" name="email" type="email" class="auth__input" placeholder="you@email.com" required/>
+
+        <div class="auth__grid">
+          <div>
+            <label class="auth__label">Password</label>
+            <input formControlName="password" name="password" type="password" class="auth__input" placeholder="Create password" required/>
+          </div>
+          <div>
+            <label class="auth__label">Confirm Password</label>
+            <input formControlName="confirmPassword" name="confirmPassword" type="password" class="auth__input" placeholder="Repeat password" required/>
+          </div>
         </div>
-
-
-        <div class="form-group py-2">
-          <label>Email</label>
-          <input formControlName="email" name="email" type="email" class="form-control" required/>
-        </div>
-
-        <div class="form-group py-2">
-          <label>Password</label>
-          <input formControlName="password" name="password" type="password" class="form-control" required/>
-        </div>
-
-        <div class="form-group py-2">
-          <label>Confirm Password</label>
-          <input formControlName="confirmPassword" name="confirmPassword" type="password" class="form-control" required/>
-        </div>
-
 
         @if (this.errors.length != 0) {
-          <div class="alert alert-danger">
+          <div class="auth__notice auth__notice--error">
             <ul>
-              @for (error of errors; track error)
-              {
+              @for (error of errors; track error) {
                 <li>{{error}}</li>
               }
             </ul>
           </div>
         }
 
-        <button type="submit" class="btn btn-primary my-2 font-weight-bold">Sign Up</button>
+        <button type="submit" class="auth__primary">Create account</button>
       </form>
 
-      <div class="col-6 float-left">
-        <h4>Already have an account?</h4>
-        <h5>Sign In instead!</h5>
-        <a [routerLink]="['user/sign-in']" class="btn btn-primary mt-2 font-weight-bold d-block">Sign In</a>
+      <div class="auth__foot">
+        <span>Already have an account?</span>
+        <a [routerLink]="['user/sign-in']">Sign in</a>
       </div>
     </div>
   </div>
-</div>
+</section>

@@ -18,6 +18,7 @@
     linear-gradient(180deg, #f1f6ff 0%, #e9f0ff 60%, #e3edff 100%);
   color: var(--ink);
   font-family: 'Trebuchet MS', 'Helvetica Neue', Arial, sans-serif;
+  border-radius: 24px;
 }
 
 .dashboard__hero {
@@ -106,7 +107,7 @@
 }
 
 .dashboard__nav-item.is-active {
-  background: #0f1b3d;
+  background: var(--accent);
   color: #fff;
   border-color: #0f1b3d;
   box-shadow: 0 10px 26px rgba(15, 42, 97, 0.22);
