@@ -1,8 +1,15 @@
-<div class="d-flex justify-content-center">
-  <div class="d-flex mt-5 flex-wrap justify-content-center home-element-cat">
+<section class="home">
+  <header class="home__hero">
+    <div>
+      <p class="home__eyebrow">Build smarter</p>
+      <h1>Choose your next component</h1>
+      <p class="home__subhead">Pick a category to explore curated parts with clean specs and fast comparison.</p>
+    </div>
+  </header>
+
+  <div class="home__grid">
     @for (cat of categories; track categories) {
       <app-category-card [category]="cat"/>
     }
   </div>
-</div>
-
+</section>
