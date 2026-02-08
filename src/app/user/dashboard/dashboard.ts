@@ -11,9 +11,15 @@ import {User} from '../../../models/user/user';
 export class Dashboard {
   private userSession = inject(UserSessionService)
   user: User | null = null;
+  panels = ['Overview', 'Orders', 'Settings', 'Security', 'Support'];
+  activePanel = 'Overview';
 
   constructor() {
     this.user = this.userSession.getUser();
+  }
+
+  selectPanel(panel: string): void {
+    this.activePanel = panel;
   }
 
   signOut(): void {

@@ -8,6 +8,7 @@ import {Cooler} from '../models/product/Cooler';
 import {BaseProduct} from '../models/product/BaseProduct';
 import {SignUpRequest} from '../models/user/SignUpRequest';
 import {AccountVerificationRequest} from '../models/user/AccountVerification';
+import {User} from '../models/user/user';
 
 @Injectable({ providedIn: 'root' })
 export class GoodStuffFunctionsService {
@@ -34,6 +35,9 @@ export class GoodStuffFunctionsService {
   }
   signOut(): Observable<string> {
     return this.http.post(`${this.baseUrl}user/signout`, {}, this.authOptions);
+  }
+  getCurrentUser(): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}user/me`, { withCredentials: true });
   }
   signUp(signUp: SignUpRequest): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}user/signup`, signUp);
