@@ -1,4 +1,49 @@
-.home-element-cat {
-  font: var(--nav-cat-font);
-  gap: 1rem;
+.home {
+  --ink: #0b1736;
+  --muted: #3b4f7a;
+  --surface: #f2f6ff;
+  --line: #c4d2f3;
+  min-height: 100vh;
+  padding: 48px clamp(16px, 4vw, 64px) 64px;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #cbdcff 0%, transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, #b7d0ff 0%, transparent 55%),
+    linear-gradient(180deg, #f1f6ff 0%, #e9f0ff 60%, #e3edff 100%);
+  color: var(--ink);
+  font-family: 'Trebuchet MS', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.home__hero {
+  background: var(--surface);
+  border-radius: 28px;
+  padding: clamp(24px, 4vw, 36px);
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 42px rgba(15, 42, 97, 0.12);
+  margin-bottom: 28px;
+}
+
+.home__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.home__hero h1 {
+  font-size: clamp(30px, 4vw, 44px);
+  margin: 0 0 12px;
+}
+
+.home__subhead {
+  margin: 0;
+  color: var(--muted);
+  max-width: 52ch;
+  line-height: 1.5;
+}
+
+.home__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
 }

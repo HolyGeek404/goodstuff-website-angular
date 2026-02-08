@@ -1,17 +1,19 @@
-<nav class="d-flex m-2 p-2 align-items-center justify-content-between">
-  <a [routerLink]="['']">
-    <div class="d-flex p-2 nav-element align-items-center">
-      <img class="rounded" width="40" height="40" ngSrc="favicon.ico" alt="icon">
-      <span class="m-1" style="font-size: 1.2rem">GoodStuff</span>
-    </div>
+<nav class="site-nav">
+  <a class="site-nav__brand" [routerLink]="['']">
+    <img class="site-nav__logo" width="40" height="40" ngSrc="favicon.ico" alt="GoodStuff logo">
+    <span class="site-nav__name">GoodStuff</span>
   </a>
-  <div>
-    <input class="search-bar p-2" type="search" placeholder="Szukaj...">
+
+  <div class="site-nav__search">
+    <input class="site-nav__input" type="search" placeholder="Search hardware...">
   </div>
-  <div class="d-flex  nav-logo p-2 nav-element justify-content-between">
-    <a [routerLink]="isSignedIn() ? ['user/dashboard'] : ['user/sign-in']">
-      <i class="fas fa-user category-nav"></i>
+
+  <div class="site-nav__actions">
+    <a class="site-nav__icon" [routerLink]="isSignedIn() ? ['user/dashboard'] : ['user/sign-in']" aria-label="User account">
+      <i class="fas fa-user"></i>
     </a>
-    <i class="fas fa-shopping-cart category-nav"></i>
+    <button class="site-nav__icon" type="button" aria-label="Shopping cart">
+      <i class="fas fa-shopping-cart"></i>
+    </button>
   </div>
 </nav>

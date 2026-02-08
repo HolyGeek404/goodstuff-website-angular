@@ -16,10 +16,12 @@
     /* dark shadow */ 0 6px 10px #00000015; /* soft shadow */
 }
 body {
-  --ff: "Manrope", sans-serif;
-  --nav-cat-font: 500 1.1rem/1em var(--ff);
-  --nav-logo-font: 600 1.1rem/1em var(--ff);
-  background-color: var(--bg-dark);
+  --ff: 'Trebuchet MS', 'Helvetica Neue', Arial, sans-serif;
+  --nav-cat-font: 500 1.05rem/1em var(--ff);
+  --nav-logo-font: 600 1.05rem/1em var(--ff);
+  background-color: #e9f0ff;
+  color: #0b1736;
+  margin: 0;
 
   /* bg-colors */
   --primary: oklch(0.65 0.15 264);
@@ -80,13 +82,12 @@ a{
 
 .product-card-text-secondary{
   margin-left: 0.7rem;
-  font: 400 0.9rem/1.2em var(--ff);
-  color: var(--text-muted);
-  line-height: 1.3rem;
+  font: 500 0.88rem/1.4em var(--ff);
+  color: #3b4f7a;
 }
 .product-card-text-main
 {
-  font: var(--nav-logo-font);
+  font: 700 1rem/1.4em var(--ff);
   margin: 0.7rem;
-  line-height: 1.5rem;
+  color: #0b1736;
 }

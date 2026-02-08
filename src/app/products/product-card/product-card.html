@@ -1,16 +1,31 @@
-<div class="d-flex flex-wrap product-test justify-content-center p-3 mt-5">
-  @for (product of products(); track product.id)
-  {
-    <div class="p-3 flex-column product-card-test">
-      <img
-        [ngSrc]="product.productImg"
-        width="240"
-        height="200"
-        alt="{{ product.name }}"
-      />
-      <div class="d-flex flex-column">
-        <app-product-card-details [product]="product" [category]="category()"/>
-      </div>
+<section class="product-view">
+  <header class="product-view__hero">
+    <div>
+      <p class="product-view__eyebrow">Category</p>
+      <h1>{{category()}}</h1>
+      <p class="product-view__subhead">Curated picks with clear specs and clean comparisons.</p>
     </div>
-  }
-</div>
+  </header>
+
+  <div class="product-view__grid">
+    @for (product of products(); track product.id) {
+      <article class="product-card">
+        <div class="product-card__media">
+          <img
+            [ngSrc]="product.productImg"
+            width="220"
+            height="180"
+            alt="{{ product.name }}"
+          />
+        </div>
+        <div class="product-card__details">
+          <app-product-card-details [product]="product" [category]="category()"/>
+        </div>
+      </article>
+    } @empty {
+      <div class="product-view__empty">
+        No products found for this category yet.
+      </div>
+    }
+  </div>
+</section>

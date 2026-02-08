@@ -30,6 +30,7 @@ export class GoodStuffFunctionsService {
     }
   }
 
+
   signIn(email: string, password: string): Observable<string> {
     return this.http.post(`${this.baseUrl}user/signin`, {email, password}, this.authOptions);
   }
