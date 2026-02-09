@@ -5,7 +5,6 @@
       <h2>Dial in your build</h2>
       <p class="product-filter__subhead">Pick the platform, performance, and budget that match your rig.</p>
     </div>
-    <button class="product-filter__clear" type="button" (click)="onClear()">Clear all</button>
   </div>
 
   @if (isLoading()) {
@@ -107,7 +106,7 @@
           </label>
         </div>
       </div>
-
+      <button class="product-filter__clear" type="button" (click)="onClear()">Clear all</button>
       <button class="product-filter__apply" type="button" (click)="onApply()">Apply filters</button>
     </div>
   } @else {

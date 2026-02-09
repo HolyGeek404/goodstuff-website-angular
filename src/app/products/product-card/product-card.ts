@@ -41,8 +41,12 @@ export class ProductCard {
     const minPrice = this.parseNumber(selection.priceMin);
     const maxPrice = this.parseNumber(selection.priceMax);
     const filtered = this.allProducts().filter((product) => {
-      const data = product as Record<string, string | undefined>;
-      if (selection.team.length && !selection.team.includes(data.team ?? '')) {
+      const data = product as BaseProduct & {
+        socket?: string;
+        cores?: string;
+        architecture?: string;
+      };
+      if (selection.team.length && !selection.team.includes(data.team)) {
         return false;
       }
       if (selection.socket.length && !selection.socket.includes(data.socket ?? '')) {

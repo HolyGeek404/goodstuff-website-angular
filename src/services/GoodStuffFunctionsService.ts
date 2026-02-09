@@ -18,8 +18,8 @@ export class GoodStuffFunctionsService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(category: ProductTypes): Observable<BaseProduct[]> {
-    switch (category) {
+  getProducts(types: ProductTypes): Observable<BaseProduct[]> {
+    switch (types) {
       case ProductTypes.CPU:
         return this.http.get<Cpu[]>(`${this.baseUrl}Product/CPU`);
       case ProductTypes.GPU:
@@ -31,8 +31,8 @@ export class GoodStuffFunctionsService {
     }
   }
 
-  getProductFilters(category: ProductTypes): Observable<ProductFilters> {
-    return this.http.get<ProductFilters>(`${this.baseUrl}product/filters/${category}`);
+  getProductFilters(types: ProductTypes): Observable<ProductFilters> {
+    return this.http.get<ProductFilters>(`${this.baseUrl}product/${types}/filters`);
   }
 
   signIn(email: string, password: string): Observable<string> {
