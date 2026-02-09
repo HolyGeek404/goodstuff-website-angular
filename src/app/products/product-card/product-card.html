@@ -7,25 +7,29 @@
     </div>
   </header>
 
-  <div class="product-view__grid">
-    @for (product of products(); track product.id) {
-      <article class="product-card">
-        <div class="product-card__media">
-          <img
-            [ngSrc]="product.productImg"
-            width="220"
-            height="180"
-            alt="{{ product.name }}"
-          />
+  <div class="product-view__layout">
+    <app-product-filter [productType]="category()" (filtersApplied)="onFiltersApplied($event)" />
+
+    <div class="product-view__grid">
+      @for (product of products(); track product.id) {
+        <article class="product-card">
+          <div class="product-card__media">
+            <img
+              [ngSrc]="product.productImg"
+              width="220"
+              height="180"
+              alt="{{ product.name }}"
+            />
+          </div>
+          <div class="product-card__details">
+            <app-product-card-details [product]="product" [category]="category()"/>
+          </div>
+        </article>
+      } @empty {
+        <div class="product-view__empty">
+          No products found for this category yet.
         </div>
-        <div class="product-card__details">
-          <app-product-card-details [product]="product" [category]="category()"/>
-        </div>
-      </article>
-    } @empty {
-      <div class="product-view__empty">
-        No products found for this category yet.
-      </div>
-    }
+      }
+    </div>
   </div>
 </section>

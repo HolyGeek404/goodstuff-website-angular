@@ -9,6 +9,7 @@ import {BaseProduct} from '../models/product/BaseProduct';
 import {SignUpRequest} from '../models/user/SignUpRequest';
 import {AccountVerificationRequest} from '../models/user/AccountVerification';
 import {User} from '../models/user/user';
+import {ProductFilters} from '../models/product/ProductFilters';
 
 @Injectable({ providedIn: 'root' })
 export class GoodStuffFunctionsService {
@@ -30,6 +31,9 @@ export class GoodStuffFunctionsService {
     }
   }
 
+  getProductFilters(category: ProductTypes): Observable<ProductFilters> {
+    return this.http.get<ProductFilters>(`${this.baseUrl}product/filters/${category}`);
+  }
 
   signIn(email: string, password: string): Observable<string> {
     return this.http.post(`${this.baseUrl}user/signin`, {email, password}, this.authOptions);
