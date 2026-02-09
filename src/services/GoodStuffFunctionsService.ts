@@ -9,6 +9,7 @@ import {BaseProduct} from '../models/product/BaseProduct';
 import {SignUpRequest} from '../models/user/SignUpRequest';
 import {AccountVerificationRequest} from '../models/user/AccountVerification';
 import {User} from '../models/user/user';
+import {ProductFilters} from '../models/product/ProductFilters';
 
 @Injectable({ providedIn: 'root' })
 export class GoodStuffFunctionsService {
@@ -17,8 +18,8 @@ export class GoodStuffFunctionsService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(category: ProductTypes): Observable<BaseProduct[]> {
-    switch (category) {
+  getProducts(types: ProductTypes): Observable<BaseProduct[]> {
+    switch (types) {
       case ProductTypes.CPU:
         return this.http.get<Cpu[]>(`${this.baseUrl}Product/CPU`);
       case ProductTypes.GPU:
@@ -30,6 +31,9 @@ export class GoodStuffFunctionsService {
     }
   }
 
+  getProductFilters(types: ProductTypes): Observable<ProductFilters> {
+    return this.http.get<ProductFilters>(`${this.baseUrl}product/${types}/filters`);
+  }
 
   signIn(email: string, password: string): Observable<string> {
     return this.http.post(`${this.baseUrl}user/signin`, {email, password}, this.authOptions);

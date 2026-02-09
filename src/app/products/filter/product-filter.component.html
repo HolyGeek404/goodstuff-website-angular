@@ -1,0 +1,115 @@
+<section class="product-filter" aria-label="Product filters">
+  <div class="product-filter__header">
+    <div>
+      <p class="product-filter__eyebrow">Filter {{ productType() }}</p>
+      <h2>Dial in your build</h2>
+      <p class="product-filter__subhead">Pick the platform, performance, and budget that match your rig.</p>
+    </div>
+  </div>
+
+  @if (isLoading()) {
+    <p class="product-filter__status">Loading filters...</p>
+  } @else if (filters()) {
+    <div class="product-filter__grid">
+      @if (filters()?.team?.length) {
+        <div class="product-filter__group">
+          <p>Brand</p>
+          <div class="product-filter__options">
+            @for (option of filters()!.team; track option) {
+              <label>
+                <input
+                  type="checkbox"
+                  [checked]="selection().team.includes(option)"
+                  (change)="toggleSelection('team', option, $any($event.target).checked)"
+                />
+                {{ option }}
+              </label>
+            }
+          </div>
+        </div>
+      }
+
+      @if (filters()?.socket?.length) {
+        <div class="product-filter__group">
+          <p>Socket</p>
+          <div class="product-filter__options">
+            @for (option of filters()!.socket; track option) {
+              <label>
+                <input
+                  type="checkbox"
+                  [checked]="selection().socket.includes(option)"
+                  (change)="toggleSelection('socket', option, $any($event.target).checked)"
+                />
+                {{ option }}
+              </label>
+            }
+          </div>
+        </div>
+      }
+
+      @if (filters()?.cores?.length) {
+        <div class="product-filter__group">
+          <p>Cores</p>
+          <div class="product-filter__options">
+            @for (option of filters()!.cores; track option) {
+              <label>
+                <input
+                  type="checkbox"
+                  [checked]="selection().cores.includes(option)"
+                  (change)="toggleSelection('cores', option, $any($event.target).checked)"
+                />
+                {{ option }}
+              </label>
+            }
+          </div>
+        </div>
+      }
+
+      @if (filters()?.architecture?.length) {
+        <div class="product-filter__group">
+          <p>Architecture</p>
+          <div class="product-filter__options">
+            @for (option of filters()!.architecture; track option) {
+              <label>
+                <input
+                  type="checkbox"
+                  [checked]="selection().architecture.includes(option)"
+                  (change)="toggleSelection('architecture', option, $any($event.target).checked)"
+                />
+                {{ option }}
+              </label>
+            }
+          </div>
+        </div>
+      }
+
+      <div class="product-filter__group">
+        <p>Price</p>
+        <div class="product-filter__range">
+          <label>
+            <span>Min</span>
+            <input
+              type="text"
+              [value]="selection().priceMin"
+              (input)="updatePrice('priceMin', $any($event.target).value)"
+              aria-label="Minimum price"
+            />
+          </label>
+          <label>
+            <span>Max</span>
+            <input
+              type="text"
+              [value]="selection().priceMax"
+              (input)="updatePrice('priceMax', $any($event.target).value)"
+              aria-label="Maximum price"
+            />
+          </label>
+        </div>
+      </div>
+      <button class="product-filter__clear" type="button" (click)="onClear()">Clear all</button>
+      <button class="product-filter__apply" type="button" (click)="onApply()">Apply filters</button>
+    </div>
+  } @else {
+    <p class="product-filter__status">No filters available.</p>
+  }
+</section>
