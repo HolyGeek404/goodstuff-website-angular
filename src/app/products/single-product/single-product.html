@@ -1,0 +1,90 @@
+<section
+  class="product-detail"
+  [class.product-detail--gpu]="category() === ProductTypes.GPU"
+  [class.product-detail--cooler]="category() === ProductTypes.COOLER"
+>
+  <div class="product-detail__shell">
+    <a class="product-detail__back" [routerLink]="['/products', category()]">Back to {{ category() }}</a>
+
+    @if (loading()) {
+      <div class="product-detail__loading">
+        <div class="product-detail__loading-bar"></div>
+        <div class="product-detail__loading-bar"></div>
+        <div class="product-detail__loading-card"></div>
+      </div>
+    } @else if (product()) {
+      <header class="product-detail__hero">
+        <div class="product-detail__meta">
+          <p class="product-detail__eyebrow">{{ category() }} build focus</p>
+          <h1>{{ product()?.name }}</h1>
+          <p class="product-detail__subhead">
+            Tuned specs, clear platform compatibility, and everything needed to pick confidently.
+          </p>
+          <div class="product-detail__badges">
+            <span class="product-detail__badge">Team {{ formatValue(product()?.team) }}</span>
+            <span class="product-detail__badge">Warranty {{ formatValue(product()?.warranty) }}</span>
+            <span class="product-detail__badge">Code {{ formatValue(product()?.producerCode) }}</span>
+          </div>
+        </div>
+        <div class="product-detail__purchase">
+          <p class="product-detail__price-label">Price</p>
+          <p class="product-detail__price">{{ formatPrice(product()?.price) }}</p>
+          <button class="product-detail__cta" type="button">Add to build</button>
+          <p class="product-detail__note">Product ID: {{ productId() }}</p>
+        </div>
+      </header>
+
+      <div class="product-detail__content">
+        <div class="product-detail__media">
+          <img
+            [ngSrc]="product()!.productImg"
+            width="420"
+            height="320"
+            alt="{{ product()?.name }}"
+          />
+        </div>
+
+        <div class="product-detail__stats">
+          @for (stat of heroStats(); track stat.label) {
+            <div class="product-detail__stat">
+              <span>{{ stat.label }}</span>
+              <strong>{{ formatValue(stat.value) }}</strong>
+            </div>
+          }
+        </div>
+
+        <div class="product-detail__overview">
+          <h2>Specs snapshot</h2>
+          <p>
+            Every stat listed below comes directly from the product catalog, so you can compare
+            compatibility, performance, and thermals in one glance.
+          </p>
+        </div>
+      </div>
+
+      <div class="product-detail__specs">
+        @for (group of specGroups(); track group.title; let i = $index) {
+          <article class="product-detail__spec-card" [style.animationDelay]="i * 0.08 + 's'">
+            <h3>{{ group.title }}</h3>
+            <dl>
+              @for (item of group.items; track item.label) {
+                <div>
+                  <dt>{{ item.label }}</dt>
+                  <dd>{{ formatValue(item.value) }}</dd>
+                </div>
+              }
+            </dl>
+          </article>
+        }
+      </div>
+    } @else {
+      <div class="product-detail__empty">
+        <h2>{{ error() ?? 'Product not found.' }}</h2>
+        <p>Try returning to the category list and selecting a different item.</p>
+        <a class="product-detail__cta product-detail__cta--ghost" [routerLink]="['/products', category()]">
+          Browse {{ category() }}
+        </a>
+      </div>
+    }
+  </div>
+</section>
