@@ -8,6 +8,11 @@ export const routes: Routes = [
       import('./home/home').then(m => m.Home)
   },
   {
+    path: 'products/:category/:id',
+    loadComponent: () =>
+      import('./products/single-product/single-product').then(m => m.SingleProduct)
+  },
+  {
     path: 'products/:category',
     loadComponent: () =>
       import('./products/product-card/product-card').then(m => m.ProductCard)

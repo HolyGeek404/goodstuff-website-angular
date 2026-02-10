@@ -1,5 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { GoodStuffFunctionsService } from '../../../services/GoodStuffFunctionsService';
 import { ActivatedRoute } from '@angular/router';
 import { ProductTypes } from '../../../models/product/ProductTypes';
@@ -10,7 +11,7 @@ import {ProductFilterComponent, type ProductFilterSelection} from '../filter/pro
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [NgOptimizedImage, ProductCardDetails, ProductFilterComponent],
+  imports: [NgOptimizedImage, RouterLink, ProductCardDetails, ProductFilterComponent],
   templateUrl: './product-card.html',
   styleUrls: ['./product-card.css']
 })
