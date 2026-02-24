@@ -12,8 +12,8 @@
     <a class="site-nav__icon" [routerLink]="isSignedIn() ? ['user/dashboard'] : ['user/sign-in']" aria-label="User account">
       <i class="fas fa-user"></i>
     </a>
-    <button class="site-nav__icon" type="button" aria-label="Shopping cart">
+    <a class="site-nav__icon" [routerLink]="['/cart']" aria-label="Shopping cart">
       <i class="fas fa-shopping-cart"></i>
-    </button>
+    </a>
   </div>
 </nav>

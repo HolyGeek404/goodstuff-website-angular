@@ -1,0 +1,35 @@
+<section class="cart">
+  <header class="cart__hero">
+    <p class="cart__eyebrow">Shopping Cart</p>
+    <h1>{{user?.name ? user?.name + "'s" : 'Your'}} cart</h1>
+    <p class="cart__subhead">Review your selected parts before checkout.</p>
+  </header>
+
+  @if (cartItems.length === 0) {
+    <div class="cart__empty">
+      <h2>Your cart is empty</h2>
+      <p>Add products from categories to start building your setup.</p>
+    </div>
+  } @else {
+    <div class="cart__list">
+      @for (item of cartItems; track item.name) {
+        <article class="cart__item">
+          <div class="cart__thumb">
+            <img [ngSrc]="item.img" [alt]="item.name" width="88" height="88">
+          </div>
+          <div class="cart__meta">
+            <h3>{{item.name}}</h3>
+            <p>Price: ${{item.price.toFixed(2)}}</p>
+            <p>Qty: {{item.qty}}</p>
+          </div>
+          <p class="cart__line-total">${{(item.price * item.qty).toFixed(2)}}</p>
+        </article>
+      }
+    </div>
+
+    <div class="cart__summary">
+      <span>Total</span>
+      <strong>${{total.toFixed(2)}}</strong>
+    </div>
+  }
+</section>
