@@ -7,6 +7,8 @@ import type { BaseProduct } from '../../../models/product/BaseProduct';
 import type { Cpu } from '../../../models/product/Cpu';
 import type { Gpu } from '../../../models/product/Gpu';
 import type { Cooler } from '../../../models/product/Cooler';
+import { UserSessionService } from '../../../services/UserSessionService';
+import type { AddCartCommand } from '../../../models/cart/AddCartCommand';
 
 type SpecItem = {
   label: string;
@@ -32,6 +34,7 @@ type HeroStat = {
 })
 export class SingleProduct {
   private functionsService = inject(GoodStuffFunctionsService);
+  private userSession = inject(UserSessionService);
 
   category = signal<ProductTypes>(ProductTypes.CPU);
   product = signal<BaseProduct | null>(null);
@@ -251,5 +254,34 @@ export class SingleProduct {
   formatPrice(value: string | undefined | null): string {
     const formatted = this.formatValue(value);
     return formatted === '—' ? formatted : `${formatted} zł`;
+  }
+
+  addToCart(): void {
+    const currentProduct = this.product();
+    const currentUser = this.userSession.getUser();
+
+    if (!currentProduct || !currentUser?.email) {
+      console.error('Cannot add to cart: missing product or signed-in user.');
+      return;
+    }
+
+    const parsedPrice = Number.parseInt(currentProduct.price, 10);
+    if (Number.isNaN(parsedPrice)) {
+      console.error('Cannot add to cart: product price is not a valid integer.');
+      return;
+    }
+
+    const command: AddCartCommand = {
+      userId: currentUser.email,
+      productId: currentProduct.productId || currentProduct.id,
+      name: currentProduct.name,
+      quantity: 1,
+      price: parsedPrice
+    };
+
+    this.functionsService.addToCart(command).subscribe({
+      next: () => console.log('Product added to cart.'),
+      error: (err) => console.error('Error adding product to cart.', err)
+    });
   }
 }

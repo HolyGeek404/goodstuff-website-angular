@@ -29,7 +29,7 @@
         <div class="product-detail__purchase">
           <p class="product-detail__price-label">Price</p>
           <p class="product-detail__price">{{ formatPrice(product()?.price) }}</p>
-          <button class="product-detail__cta" type="button">Add to build</button>
+          <button class="product-detail__cta" type="button" (click)="addToCart()">Add to cart</button>
           <p class="product-detail__note">Product ID: {{ productId() }}</p>
         </div>
       </header>

@@ -10,6 +10,7 @@ import {SignUpRequest} from '../models/user/SignUpRequest';
 import {AccountVerificationRequest} from '../models/user/AccountVerification';
 import {User} from '../models/user/user';
 import {ProductFilters} from '../models/product/ProductFilters';
+import {AddCartCommand} from '../models/cart/AddCartCommand';
 
 @Injectable({ providedIn: 'root' })
 export class GoodStuffFunctionsService {
@@ -50,5 +51,9 @@ export class GoodStuffFunctionsService {
   accountVerification(accVerf: AccountVerificationRequest): Observable<boolean>{
     return this.http.post<boolean>(`${this.baseUrl}user/accountverification`, accVerf);
 
+  }
+
+  addToCart(command: AddCartCommand): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}cart`, command);
   }
 }
