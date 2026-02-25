@@ -4,6 +4,7 @@ import {UserSessionService} from '../../services/UserSessionService';
 import {User} from '../../models/user/user';
 import {GoodStuffFunctionsService} from '../../services/GoodStuffFunctionsService';
 import {CartItemResponse} from '../../models/cart/CartItemResponse';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
 interface CartItem {
   name: string;
@@ -14,7 +15,7 @@ interface CartItem {
 
 @Component({
   selector: 'app-cart',
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, ReactiveFormsModule],
   templateUrl: './cart.html',
   styleUrl: './cart.css'
 })
@@ -22,8 +23,19 @@ export class Cart {
   private userSession = inject(UserSessionService);
   private functionsService = inject(GoodStuffFunctionsService);
   user: User | null = this.userSession.getUser();
+  orderState: 'idle' | 'success' | 'error' = 'idle';
 
   cartItems: CartItem[] = [];
+  orderForm = new FormGroup({
+    baseAddress: new FormGroup({
+      street: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      city: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      postalCode: new FormControl('', [Validators.required, Validators.pattern(/^\d{2}-\d{3}$/)]),
+      country: new FormControl('Poland', [Validators.required])
+    }),
+    paymentMethod: new FormControl('', [Validators.required])
+  });
+  paymentMethods: string[] = ['Card', 'BLIK', 'PayPal', 'Cash on delivery'];
 
   constructor() {
     this.loadCart();
@@ -62,5 +74,15 @@ export class Cart {
       price,
       img: 'categories/cpu.svg'
     };
+  }
+
+  submitOrder(): void {
+    if (this.cartItems.length === 0 || this.orderForm.invalid) {
+      this.orderForm.markAllAsTouched();
+      this.orderState = 'error';
+      return;
+    }
+
+    this.orderState = 'success';
   }
 }
