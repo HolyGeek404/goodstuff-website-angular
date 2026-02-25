@@ -11,6 +11,7 @@ import {AccountVerificationRequest} from '../models/user/AccountVerification';
 import {User} from '../models/user/user';
 import {ProductFilters} from '../models/product/ProductFilters';
 import {AddCartCommand} from '../models/cart/AddCartCommand';
+import {CartItemResponse} from '../models/cart/CartItemResponse';
 
 @Injectable({ providedIn: 'root' })
 export class GoodStuffFunctionsService {
@@ -55,5 +56,11 @@ export class GoodStuffFunctionsService {
 
   addToCart(command: AddCartCommand): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}cart`, command);
+  }
+
+  getCart(userId: string): Observable<CartItemResponse[]> {
+    return this.http.get<CartItemResponse[]>(`${this.baseUrl}cart`, {
+      params: { userId }
+    });
   }
 }
