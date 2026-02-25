@@ -4,6 +4,18 @@
   [class.product-detail--cooler]="category() === ProductTypes.COOLER"
 >
   <div class="product-detail__shell">
+    @if (toastMessage()) {
+      <aside
+        class="product-detail__toast"
+        [class.product-detail__toast--error]="toastType() === 'error'"
+        role="status"
+        aria-live="polite"
+      >
+        <span>{{ toastMessage() }}</span>
+        <button type="button" (click)="dismissToast()" aria-label="Dismiss notification">Close</button>
+      </aside>
+    }
+
     <a class="product-detail__back" [routerLink]="['/products', category()]">Back to {{ category() }}</a>
 
     @if (loading()) {
@@ -29,7 +41,9 @@
         <div class="product-detail__purchase">
           <p class="product-detail__price-label">Price</p>
           <p class="product-detail__price">{{ formatPrice(product()?.price) }}</p>
-          <button class="product-detail__cta" type="button" (click)="addToCart()">Add to cart</button>
+          <button class="product-detail__cta" type="button" (click)="addToCart()" [disabled]="isAddingToCart()">
+            {{ isAddingToCart() ? 'Adding...' : 'Add to cart' }}
+          </button>
           <p class="product-detail__note">Product ID: {{ productId() }}</p>
         </div>
       </header>

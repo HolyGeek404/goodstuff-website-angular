@@ -25,6 +25,8 @@ type HeroStat = {
   value: string | undefined | null;
 };
 
+type ToastType = 'success' | 'error';
+
 @Component({
   selector: 'app-single-product',
   standalone: true,
@@ -41,7 +43,11 @@ export class SingleProduct {
   loading = signal<boolean>(true);
   error = signal<string | null>(null);
   productId = signal<string>('');
+  isAddingToCart = signal<boolean>(false);
+  toastMessage = signal<string | null>(null);
+  toastType = signal<ToastType>('success');
   protected readonly ProductTypes = ProductTypes;
+  private toastTimer: ReturnType<typeof setTimeout> | null = null;
 
   heroStats = computed<HeroStat[]>(() => {
     const current = this.product();
@@ -261,13 +267,13 @@ export class SingleProduct {
     const currentUser = this.userSession.getUser();
 
     if (!currentProduct || !currentUser?.email) {
-      console.error('Cannot add to cart: missing product or signed-in user.');
+      this.showToast('Please sign in to add products to your cart.', 'error');
       return;
     }
 
     const parsedPrice = Number.parseInt(currentProduct.price, 10);
     if (Number.isNaN(parsedPrice)) {
-      console.error('Cannot add to cart: product price is not a valid integer.');
+      this.showToast('Unable to add this product right now. Invalid price format.', 'error');
       return;
     }
 
@@ -279,9 +285,37 @@ export class SingleProduct {
       price: parsedPrice
     };
 
+    this.isAddingToCart.set(true);
     this.functionsService.addToCart(command).subscribe({
-      next: () => console.log('Product added to cart.'),
-      error: (err) => console.error('Error adding product to cart.', err)
+      next: () => {
+        this.showToast('Product successfully added to your cart.', 'success');
+        this.isAddingToCart.set(false);
+      },
+      error: () => {
+        this.showToast('Failed to add product to cart. Please try again.', 'error');
+        this.isAddingToCart.set(false);
+      }
     });
+  }
+
+  dismissToast(): void {
+    this.toastMessage.set(null);
+    if (this.toastTimer) {
+      clearTimeout(this.toastTimer);
+      this.toastTimer = null;
+    }
+  }
+
+  private showToast(message: string, type: ToastType): void {
+    this.toastType.set(type);
+    this.toastMessage.set(message);
+
+    if (this.toastTimer) {
+      clearTimeout(this.toastTimer);
+    }
+    this.toastTimer = setTimeout(() => {
+      this.toastMessage.set(null);
+      this.toastTimer = null;
+    }, 3200);
   }
 }
