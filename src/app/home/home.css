@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=Space+Grotesk:wght@400;500;600&display=swap');
+
+:host {
+  display: block;
+  color: #0f172a;
+}
+
+.home {
+  padding: clamp(24px, 4vw, 56px) 0 72px;
+}
+
+.home-shell {
+  display: grid;
+  gap: clamp(28px, 4vw, 56px);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(20px, 3vw, 36px);
+  padding: clamp(24px, 4vw, 48px);
+  border-radius: 26px;
+  border: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 55%, #ffffff 100%);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+}
+
+.hero-content {
+  display: grid;
+  gap: 16px;
+}
+
+.eyebrow {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #64748b;
+}
+
+.hero h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0;
+  color: #0b1220;
+}
+
+.hero p {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 1.05rem;
+  color: #475569;
+  max-width: 38ch;
+  margin: 0;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero-panel {
+  display: grid;
+  gap: 12px;
+  align-content: center;
+  padding: clamp(16px, 3vw, 28px);
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+.hero-stat {
+  display: grid;
+  gap: 6px;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.stat-value {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.1rem;
+  color: #0f172a;
+}
+
+.categories {
+  display: grid;
+  gap: 20px;
+}
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.section-head h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  margin: 0 0 6px;
+}
+
+.section-head p {
+  margin: 0;
+  color: #64748b;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 18px;
+}
+
+.category-card {
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  padding: 18px;
+  display: grid;
+  gap: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  background: #ffffff;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  border-color: #cbd5f5;
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.12);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #f1f5f9;
+}
+
+.card-icon img {
+  width: 28px;
+  height: 28px;
+}
+
+.card-body h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.05rem;
+  margin: 0 0 6px;
+}
+
+.card-body p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.card-cta {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #3b82f6;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+@media (max-width: 720px) {
+  .hero {
+    border-radius: 20px;
+  }
+
+  .hero-panel {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}
