@@ -1,3 +1,17 @@
 <section>
-
+  <p-toolbar [style]="{ 'border-radius': '3rem', margin: '1rem', padding: '1rem' }">
+    <ng-template #start>
+    <p-image width="40" src="favicon.ico"/>
+  </ng-template>
+  <ng-template #center>
+    <p-iconfield iconPosition="left">
+      <p-inputicon class="pi pi-search" />
+      <input type="text" pInputText placeholder="Search" />
+    </p-iconfield>
+  </ng-template>
+  <ng-template #end>
+    <p-button plain text><p-iconfield class="pi pi-user"/></p-button>
+    <p-button plain text><p-iconfield class="pi pi-shopping-cart"/></p-button>
+  </ng-template>
+</p-toolbar>
 </section>
