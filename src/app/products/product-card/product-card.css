@@ -7,10 +7,7 @@
   --line: #c4d2f3;
   min-height: 100vh;
   padding: 40px clamp(16px, 4vw, 64px) 64px;
-  background:
-    radial-gradient(1200px 600px at 10% -10%, #cbdcff 0%, transparent 60%),
-    radial-gradient(900px 500px at 100% 0%, #b7d0ff 0%, transparent 55%),
-    linear-gradient(180deg, #f1f6ff 0%, #e9f0ff 60%, #e3edff 100%);
+
   color: var(--ink);
   font-family: 'Trebuchet MS', 'Helvetica Neue', Arial, sans-serif;
   border-radius: 24px;
@@ -63,7 +60,8 @@
 }
 
 .product-card__link {
-  display: block;
+  width: 350px;
+  height: 450px;
 }
 
 .product-card {

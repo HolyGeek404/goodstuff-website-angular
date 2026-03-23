@@ -1,17 +1,16 @@
-<section class="product-view">
+<section class="product-view justify-content-center ">
   <header class="product-view__hero">
     <div>
       <p class="product-view__eyebrow">Category</p>
-      <h1>{{category()}}</h1>
+      <h1>{{category}}</h1>
       <p class="product-view__subhead">Curated picks with clear specs and clean comparisons.</p>
     </div>
   </header>
 
-  <div class="product-view__layout">
 
-    <div class="product-view__grid">
+    <div class="d-flex flex-wrap gap-4 mt-5 justify-content-start">
       @for (product of products(); track product.id) {
-        <a class="product-card__link" [routerLink]="['/products', category(), product.productId || product.id]">
+        <a class="product-card__link" [routerLink]="['/products', category, product.productId || product.id]">
           <article class="product-card">
             <div class="product-card__media">
               <img
@@ -22,7 +21,7 @@
               />
             </div>
             <div class="product-card__details">
-              @switch (category())
+              @switch (category)
               {
                 @case (ProductTypes.CPU)
                 {
@@ -46,5 +45,4 @@
         </div>
       }
     </div>
-  </div>
 </section>

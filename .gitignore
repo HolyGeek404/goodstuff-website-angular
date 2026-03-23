@@ -32,3 +32,4 @@ yarn-error.log*
 /.idea/vcs.xml
 /.idea/GoodStuff_Website_Angular.iml
 /.idea/dictionaries/project.xml
+/.idea/compiler.xml
