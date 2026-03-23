@@ -13,12 +13,7 @@
         <a class="product-card__link" [routerLink]="['/products', category(), product.productId || product.id]">
           <article class="product-card">
             <div class="product-card__media">
-              <img
-                [ngSrc]="product.productImg"
-                width="220"
-                height="180"
-                alt="{{ product.name }}"
-              />
+              <img [ngSrc]="product.productImg" width="220" height="180" alt="{{ product.name }}"/>
             </div>
             <div class="product-card__details">
               @switch (category())

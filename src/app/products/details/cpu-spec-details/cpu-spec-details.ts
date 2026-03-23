@@ -1,5 +1,5 @@
 import {Component, input} from '@angular/core';
-import type {Cpu} from '../../../../models/product/Cpu';
+import type {CpuModel} from '../../../../models/product/CpuModel';
 
 @Component({
   selector: 'app-cpu-spec-details',
@@ -8,5 +8,5 @@ import type {Cpu} from '../../../../models/product/Cpu';
   styleUrl: './cpu-spec-details.css'
 })
 export class CpuSpecDetails {
-  product = input.required<Cpu>();
+  product = input.required<CpuModel>();
 }

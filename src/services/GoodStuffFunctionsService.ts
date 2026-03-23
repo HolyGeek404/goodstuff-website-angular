@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Cpu} from '../models/product/Cpu';
+import {CpuModel} from '../models/product/CpuModel';
 import {Gpu} from '../models/product/Gpu';
 import {ProductTypes} from '../models/product/ProductTypes';
 import {Cooler} from '../models/product/Cooler';
@@ -23,13 +23,13 @@ export class GoodStuffFunctionsService {
   getProducts(types: ProductTypes): Observable<BaseProduct[]> {
     switch (types) {
       case ProductTypes.CPU:
-        return this.http.get<Cpu[]>(`${this.baseUrl}Product/CPU`);
+        return this.http.get<CpuModel[]>(`${this.baseUrl}Product/CPU`);
       case ProductTypes.GPU:
         return this.http.get<Gpu[]>(`${this.baseUrl}product/GPU`);
       case ProductTypes.COOLER:
         return this.http.get<Cooler[]>(`${this.baseUrl}product/COOLER`);
       default:
-        return this.http.get<Cpu[]>(`${this.baseUrl}product/CPU`);
+        return this.http.get<CpuModel[]>(`${this.baseUrl}product/CPU`);
     }
   }
 

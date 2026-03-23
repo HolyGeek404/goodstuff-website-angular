@@ -1,6 +1,6 @@
 import {BaseProduct} from './BaseProduct';
 
-export interface Cpu extends BaseProduct {
+export interface CpuModel extends BaseProduct {
   family?: string;
   series?: string;
   socket?: string;

@@ -1,0 +1,235 @@
+.cpu-product {
+  --cpu-bg: #eef7ff;
+  --cpu-panel: #ffffff;
+  --cpu-panel-2: #e6f2ff;
+  --cpu-line: rgba(33, 150, 243, 0.28);
+  --cpu-text: #0f1b2d;
+  --cpu-muted: #4c6a8f;
+  --cpu-accent: #2196f3;
+  --cpu-accent-2: #4fc3ff;
+  color: var(--cpu-text);
+  border-radius: 28px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  box-shadow: 0 30px 80px rgba(33, 150, 243, 0.2);
+}
+
+.cpu-product__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 24px;
+  padding: 28px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(230, 242, 255, 0.95));
+  border: 1px solid var(--cpu-line);
+}
+
+.cpu-product__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cpu-product__eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cpu-muted);
+}
+
+.cpu-product__title {
+  font-size: clamp(2rem, 3vw, 3rem);
+  margin: 0;
+}
+
+.cpu-product__subtitle {
+  margin: 0;
+  color: var(--cpu-muted);
+  font-size: 1.05rem;
+  max-width: 36rem;
+}
+
+.cpu-product__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cpu-product__badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(79, 195, 255, 0.2);
+  border: 1px solid rgba(33, 150, 243, 0.4);
+  font-size: 0.85rem;
+  color: var(--cpu-text);
+}
+
+.cpu-product__purchase {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--cpu-panel-2);
+  border: 1px solid var(--cpu-line);
+  border-radius: 18px;
+  padding: 20px;
+  align-self: center;
+}
+
+.cpu-product__price-label {
+  color: var(--cpu-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.cpu-product__price {
+  font-size: 2.2rem;
+  margin: 0;
+  color: var(--cpu-accent);
+}
+
+.cpu-product__cta {
+  background: var(--cpu-accent);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #08213a;
+}
+
+.cpu-product__note {
+  color: var(--cpu-muted);
+  font-size: 0.9rem;
+}
+
+.cpu-product__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.cpu-product__media {
+  background: var(--cpu-panel);
+  border-radius: 22px;
+  padding: 28px;
+  border: 1px solid var(--cpu-line);
+  display: flex;
+  justify-content: center;
+}
+
+.cpu-product__image {
+  max-width: 100%;
+  border-radius: 18px;
+  background: #e3f1ff;
+}
+
+.cpu-product__stats {
+  display: grid;
+  gap: 12px;
+}
+
+.cpu-product__stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(227, 241, 255, 0.8);
+  border: 1px solid var(--cpu-line);
+}
+
+.cpu-product__stat span {
+  color: var(--cpu-muted);
+}
+
+.cpu-product__overview {
+  margin-top: 12px;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid var(--cpu-line);
+  background: rgba(230, 242, 255, 0.8);
+}
+
+.cpu-product__overview h2 {
+  margin-top: 0;
+}
+
+.cpu-product__specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.cpu-product__spec-card {
+  padding: 20px;
+  border-radius: 18px;
+  background: var(--cpu-panel);
+  border: 1px solid var(--cpu-line);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cpu-product__spec-card h3 {
+  margin: 0;
+}
+
+.cpu-product__spec-card dl {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.cpu-product__spec-card dt {
+  color: var(--cpu-muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cpu-product__spec-card dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.cpu-product__footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(120deg, rgba(79, 195, 255, 0.28), rgba(33, 150, 243, 0.22));
+  border: 1px solid var(--cpu-line);
+}
+
+.cpu-product__footer h4 {
+  margin: 0 0 8px;
+}
+
+@media (max-width: 900px) {
+  .cpu-product {
+    padding: 20px;
+  }
+
+  .cpu-product__hero {
+    grid-template-columns: 1fr;
+  }
+
+  .cpu-product__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .cpu-product__badge {
+    font-size: 0.75rem;
+  }
+
+  .cpu-product__price {
+    font-size: 1.8rem;
+  }
+}
