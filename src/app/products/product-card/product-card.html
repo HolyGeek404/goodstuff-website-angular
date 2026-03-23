@@ -8,7 +8,6 @@
   </header>
 
   <div class="product-view__layout">
-    <app-product-filter [productType]="category()" (filtersApplied)="onFiltersApplied($event)" />
 
     <div class="product-view__grid">
       @for (product of products(); track product.id) {
@@ -23,7 +22,21 @@
               />
             </div>
             <div class="product-card__details">
-              <app-product-card-details [product]="product" [category]="category()"/>
+              @switch (category())
+              {
+                @case (ProductTypes.CPU)
+                {
+                  <app-cpu-spec-details [product]="product"/>
+                }
+                @case (ProductTypes.GPU)
+                {
+                  <app-gpu-spec-details [product]="product"/>
+                }
+                @case (ProductTypes.COOLER)
+                {
+                  <app-cooler-spec-details [product]="product"/>
+                }
+              }
             </div>
           </article>
         </a>
