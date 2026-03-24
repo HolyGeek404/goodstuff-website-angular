@@ -1,0 +1,156 @@
+@if (gpuProduct(); as gpu) {
+  <section class="gpu-product">
+    <header class="gpu-product__hero">
+      <div class="gpu-product__meta">
+        <p class="gpu-product__eyebrow">{{ gpu.category }} · {{ gpu.team }}</p>
+        <h1 class="gpu-product__title">{{ gpu.name }}</h1>
+        <p class="gpu-product__subtitle">
+          {{ gpu.gpuProcessorLine || gpu.gpuProcessorName || gpu.manufacturer }}
+        </p>
+        <div class="gpu-product__badges">
+          <span class="gpu-product__badge">{{ gpu.memorySize }} {{ gpu.memoryType }}</span>
+          <span class="gpu-product__badge">{{ gpu.pcieType }}</span>
+          <span class="gpu-product__badge">{{ gpu.coolingType }}</span>
+        </div>
+      </div>
+      <div class="gpu-product__purchase">
+        <p class="gpu-product__price-label">Price</p>
+        <p class="gpu-product__price">{{ gpu.price }}</p>
+        <button class="gpu-product__cta" type="button">Add to cart</button>
+        <p class="gpu-product__note">Producer code: {{ gpu.producerCode }}</p>
+      </div>
+    </header>
+
+    <div class="gpu-product__content">
+      <div class="gpu-product__media">
+        <img
+          class="gpu-product__image"
+          [ngSrc]="gpu.productImg"
+          [alt]="gpu.name"
+          width="420"
+          height="320"
+        />
+      </div>
+
+      <div class="gpu-product__stats">
+        <div class="gpu-product__stat">
+          <span>Core / Memory</span>
+          <strong>{{ gpu.coreRatio }} / {{ gpu.memoryRatio }}</strong>
+        </div>
+        <div class="gpu-product__stat">
+          <span>Memory Bus</span>
+          <strong>{{ gpu.memoryBus }}</strong>
+        </div>
+        <div class="gpu-product__stat">
+          <span>Cores</span>
+          <strong>{{ gpu.coresNumber }}</strong>
+        </div>
+      </div>
+
+      <div class="gpu-product__overview">
+        <h2>Overview</h2>
+        <p>
+          {{ gpu.supportedLibraries || gpu.outputsType }}
+        </p>
+      </div>
+    </div>
+
+    <section class="gpu-product__specs">
+      <article class="gpu-product__spec-card">
+        <h3>Core Specs</h3>
+        <dl>
+          <div>
+            <dt>Processor</dt>
+            <dd>{{ gpu.gpuProcessorName }}</dd>
+          </div>
+          <div>
+            <dt>Cores</dt>
+            <dd>{{ gpu.coresNumber }}</dd>
+          </div>
+          <div>
+            <dt>Core Ratio</dt>
+            <dd>{{ gpu.coreRatio }}</dd>
+          </div>
+          <div>
+            <dt>PCIe</dt>
+            <dd>{{ gpu.pcieType }}</dd>
+          </div>
+          <div>
+            <dt>Cooling</dt>
+            <dd>{{ gpu.coolingType }}</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="gpu-product__spec-card">
+        <h3>Memory</h3>
+        <dl>
+          <div>
+            <dt>Memory Size</dt>
+            <dd>{{ gpu.memorySize }}</dd>
+          </div>
+          <div>
+            <dt>Memory Type</dt>
+            <dd>{{ gpu.memoryType }}</dd>
+          </div>
+          <div>
+            <dt>Memory Bus</dt>
+            <dd>{{ gpu.memoryBus }}</dd>
+          </div>
+          <div>
+            <dt>Memory Ratio</dt>
+            <dd>{{ gpu.memoryRatio }}</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="gpu-product__spec-card">
+        <h3>Power & Size</h3>
+        <dl>
+          <div>
+            <dt>Power Connector</dt>
+            <dd>{{ gpu.powerConnector }}</dd>
+          </div>
+          <div>
+            <dt>Recommended PSU</dt>
+            <dd>{{ gpu.recommendedPsuPower }}</dd>
+          </div>
+          <div>
+            <dt>Length</dt>
+            <dd>{{ gpu.length }}</dd>
+          </div>
+          <div>
+            <dt>Width</dt>
+            <dd>{{ gpu.width }}</dd>
+          </div>
+          <div>
+            <dt>Height</dt>
+            <dd>{{ gpu.height }}</dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+
+    <section class="gpu-product__footer">
+      <div class="gpu-product__delivery">
+        <h4>Product ID</h4>
+        <p>{{ gpu.id }}</p>
+      </div>
+      <div class="gpu-product__support">
+        <h4>Warranty</h4>
+        <p>{{ gpu.warranty }}</p>
+      </div>
+    </section>
+  </section>
+} @else {
+  <section class="gpu-product mt-2">
+    <div class="gpu-product__empty">
+      <p class="gpu-product__empty-eyebrow">GPU</p>
+      <h1 class="gpu-product__empty-title">GPU not found</h1>
+      <p class="gpu-product__empty-text">
+        The selected graphics card does not exist or is no longer available. Try another product
+        or go back to the GPU list.
+      </p>
+    </div>
+  </section>
+}

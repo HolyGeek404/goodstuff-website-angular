@@ -1,8 +1,6 @@
 import {BaseProduct} from './BaseProduct';
 
-export interface Gpu extends BaseProduct {
-  category: string; // still required, defaults to "Cpu" in backend
-
+export interface GpuModel extends BaseProduct {
   gpuProcessorLine?: string;
   pcieType?: string;
   memorySize?: string;

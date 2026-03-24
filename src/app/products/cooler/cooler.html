@@ -1,0 +1,152 @@
+@if (coolerProduct(); as cooler) {
+  <section class="cooler-product">
+    <header class="cooler-product__hero">
+      <div class="cooler-product__meta">
+        <p class="cooler-product__eyebrow">{{ cooler.category }} · {{ cooler.team }}</p>
+        <h1 class="cooler-product__title">{{ cooler.name }}</h1>
+        <p class="cooler-product__subtitle">
+          {{ cooler.highlight || cooler.compatibility }}
+        </p>
+        <div class="cooler-product__badges">
+          <span class="cooler-product__badge">{{ cooler.coolerType }}</span>
+          <span class="cooler-product__badge">{{ cooler.compatibility }}</span>
+          <span class="cooler-product__badge">{{ cooler.fanSize }}</span>
+        </div>
+      </div>
+      <div class="cooler-product__purchase">
+        <p class="cooler-product__price-label">Price</p>
+        <p class="cooler-product__price">{{ cooler.price }}</p>
+        <button class="cooler-product__cta" type="button">Add to cart</button>
+        <p class="cooler-product__note">Producer code: {{ cooler.producerCode }}</p>
+      </div>
+    </header>
+
+    <div class="cooler-product__content">
+      <div class="cooler-product__media">
+        <img
+          class="cooler-product__image"
+          [ngSrc]="cooler.productImg"
+          [alt]="cooler.name"
+          width="420"
+          height="320"
+        />
+      </div>
+
+      <div class="cooler-product__stats">
+        <div class="cooler-product__stat">
+          <span>Heat Pipes</span>
+          <strong>{{ cooler.heatPipes }}</strong>
+        </div>
+        <div class="cooler-product__stat">
+          <span>Fans</span>
+          <strong>{{ cooler.fans }}</strong>
+        </div>
+        <div class="cooler-product__stat">
+          <span>RPM Control</span>
+          <strong>{{ cooler.rpmControl || cooler.rmp }}</strong>
+        </div>
+      </div>
+
+      <div class="cooler-product__overview">
+        <h2>Overview</h2>
+        <p>
+          {{ cooler.highlight || cooler.compatibility }}
+        </p>
+      </div>
+    </div>
+
+    <section class="cooler-product__specs">
+      <article class="cooler-product__spec-card">
+        <h3>Cooling</h3>
+        <dl>
+          <div>
+            <dt>Cooler Type</dt>
+            <dd>{{ cooler.coolerType }}</dd>
+          </div>
+          <div>
+            <dt>Heat Pipes</dt>
+            <dd>{{ cooler.heatPipes }}</dd>
+          </div>
+          <div>
+            <dt>Fans</dt>
+            <dd>{{ cooler.fans }}</dd>
+          </div>
+          <div>
+            <dt>Bearing</dt>
+            <dd>{{ cooler.bearingType }}</dd>
+          </div>
+          <div>
+            <dt>Fan Size</dt>
+            <dd>{{ cooler.fanSize }}</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="cooler-product__spec-card">
+        <h3>Electrical</h3>
+        <dl>
+          <div>
+            <dt>Connector</dt>
+            <dd>{{ cooler.connector }}</dd>
+          </div>
+          <div>
+            <dt>Supply Voltage</dt>
+            <dd>{{ cooler.supplyVoltage }}</dd>
+          </div>
+          <div>
+            <dt>Supply Current</dt>
+            <dd>{{ cooler.supplyCurrent }}</dd>
+          </div>
+          <div>
+            <dt>RPM Control</dt>
+            <dd>{{ cooler.rpmControl || cooler.rmp }}</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="cooler-product__spec-card">
+        <h3>Dimensions</h3>
+        <dl>
+          <div>
+            <dt>Height</dt>
+            <dd>{{ cooler.height }}</dd>
+          </div>
+          <div>
+            <dt>Width</dt>
+            <dd>{{ cooler.width }}</dd>
+          </div>
+          <div>
+            <dt>Depth</dt>
+            <dd>{{ cooler.depth }}</dd>
+          </div>
+          <div>
+            <dt>Weight</dt>
+            <dd>{{ cooler.weight }}</dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+
+    <section class="cooler-product__footer">
+      <div class="cooler-product__delivery">
+        <h4>Product ID</h4>
+        <p>{{ cooler.id }}</p>
+      </div>
+      <div class="cooler-product__support">
+        <h4>Warranty</h4>
+        <p>{{ cooler.warranty }}</p>
+      </div>
+    </section>
+  </section>
+} @else {
+  <section class="cooler-product mt-2">
+    <div class="cooler-product__empty">
+      <p class="cooler-product__empty-eyebrow">Cooler</p>
+      <h1 class="cooler-product__empty-title">Cooler not found</h1>
+      <p class="cooler-product__empty-text">
+        The selected cooler does not exist or is no longer available. Try another product or go
+        back to the cooler list.
+      </p>
+    </div>
+  </section>
+}

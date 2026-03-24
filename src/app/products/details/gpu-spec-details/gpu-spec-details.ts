@@ -1,5 +1,5 @@
 import {Component, input} from '@angular/core';
-import {Gpu} from '../../../../models/product/Gpu';
+import {GpuModel} from '../../../../models/product/GpuModel';
 
 @Component({
   selector: 'app-gpu-spec-details',
@@ -8,6 +8,6 @@ import {Gpu} from '../../../../models/product/Gpu';
   styleUrl: './gpu-spec-details.css'
 })
 export class GpuSpecDetails {
-  product = input.required<Gpu>();
+  product = input.required<GpuModel>();
 
 }

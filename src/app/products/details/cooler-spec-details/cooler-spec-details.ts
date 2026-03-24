@@ -1,5 +1,5 @@
 import {Component, input} from '@angular/core';
-import type {Cooler} from '../../../../models/product/Cooler';
+import type {CoolerModel} from '../../../../models/product/CoolerModel';
 
 @Component({
   selector: 'app-cooler-spec-details',
@@ -8,5 +8,5 @@ import type {Cooler} from '../../../../models/product/Cooler';
   styleUrl: './cooler-spec-details.css'
 })
 export class CoolerSpecDetails {
-  product = input.required<Cooler>();
+  product = input.required<CoolerModel>();
 }

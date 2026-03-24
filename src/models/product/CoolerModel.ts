@@ -1,6 +1,6 @@
 import {BaseProduct} from './BaseProduct';
 
-export interface Cooler extends BaseProduct {
+export interface CoolerModel extends BaseProduct {
   coolerType?: string;
   compatibility?: string;
   size?: string;

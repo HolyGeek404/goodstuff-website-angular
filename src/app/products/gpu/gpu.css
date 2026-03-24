@@ -1,0 +1,261 @@
+.gpu-product {
+  --gpu-panel: #ffffff;
+  --gpu-panel-2: #fff3e0;
+  --gpu-line: rgba(255, 152, 0, 0.3);
+  --gpu-text: #2d1b0f;
+  --gpu-muted: #7a5a3a;
+  --gpu-accent: #ff9800;
+  --gpu-accent-2: #ffc107;
+  color: var(--gpu-text);
+  border-radius: 28px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  box-shadow: 0 30px 80px rgba(255, 152, 0, 0.2);
+}
+
+.gpu-product__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 24px;
+  padding: 28px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 243, 224, 0.95));
+  border: 1px solid var(--gpu-line);
+}
+
+.gpu-product__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gpu-product__eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gpu-muted);
+}
+
+.gpu-product__title {
+  font-size: clamp(2rem, 3vw, 3rem);
+  margin: 0;
+}
+
+.gpu-product__subtitle {
+  margin: 0;
+  color: var(--gpu-muted);
+  font-size: 1.05rem;
+  max-width: 36rem;
+}
+
+.gpu-product__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gpu-product__badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 193, 7, 0.2);
+  border: 1px solid rgba(255, 152, 0, 0.5);
+  font-size: 0.85rem;
+  color: var(--gpu-text);
+}
+
+.gpu-product__purchase {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--gpu-panel-2);
+  border: 1px solid var(--gpu-line);
+  border-radius: 18px;
+  padding: 20px;
+  align-self: center;
+}
+
+.gpu-product__price-label {
+  color: var(--gpu-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.gpu-product__price {
+  font-size: 2.2rem;
+  margin: 0;
+  color: var(--gpu-accent);
+}
+
+.gpu-product__cta {
+  background: var(--gpu-accent);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #3a2108;
+}
+
+.gpu-product__note {
+  color: var(--gpu-muted);
+  font-size: 0.9rem;
+}
+
+.gpu-product__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.gpu-product__media {
+  background: var(--gpu-panel);
+  border-radius: 22px;
+  padding: 28px;
+  border: 1px solid var(--gpu-line);
+  display: flex;
+  justify-content: center;
+}
+
+.gpu-product__image {
+  max-width: 100%;
+  border-radius: 18px;
+  background: #ffefd6;
+}
+
+.gpu-product__stats {
+  display: grid;
+  gap: 12px;
+}
+
+.gpu-product__stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(255, 239, 214, 0.8);
+  border: 1px solid var(--gpu-line);
+}
+
+.gpu-product__stat span {
+  color: var(--gpu-muted);
+}
+
+.gpu-product__overview {
+  margin-top: 12px;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid var(--gpu-line);
+  background: rgba(255, 243, 224, 0.8);
+}
+
+.gpu-product__overview h2 {
+  margin-top: 0;
+}
+
+.gpu-product__specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.gpu-product__spec-card {
+  padding: 20px;
+  border-radius: 18px;
+  background: var(--gpu-panel);
+  border: 1px solid var(--gpu-line);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gpu-product__spec-card h3 {
+  margin: 0;
+}
+
+.gpu-product__spec-card dl {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.gpu-product__spec-card dt {
+  color: var(--gpu-muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.gpu-product__spec-card dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.gpu-product__footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(120deg, rgba(255, 193, 7, 0.26), rgba(255, 152, 0, 0.2));
+  border: 1px solid var(--gpu-line);
+}
+
+.gpu-product__footer h4 {
+  margin: 0 0 8px;
+}
+
+.gpu-product__empty {
+  padding: 36px;
+  border-radius: 22px;
+  background: rgba(255, 243, 224, 0.7);
+  border: 1px solid var(--gpu-line);
+  text-align: center;
+}
+
+.gpu-product__empty-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gpu-muted);
+  font-size: 0.8rem;
+  margin: 0 0 8px;
+}
+
+.gpu-product__empty-title {
+  margin: 0 0 12px;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+.gpu-product__empty-text {
+  margin: 0;
+  color: var(--gpu-muted);
+  font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+  .gpu-product {
+    padding: 20px;
+  }
+
+  .gpu-product__hero {
+    grid-template-columns: 1fr;
+  }
+
+  .gpu-product__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .gpu-product__badge {
+    font-size: 0.75rem;
+  }
+
+  .gpu-product__price {
+    font-size: 1.8rem;
+  }
+}
