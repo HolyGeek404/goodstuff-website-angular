@@ -10,8 +10,13 @@ import {BaseProduct} from '../models/product/BaseProduct';
 export class ProductService {
   private http = inject(HttpClient)
 
-  public getProductBaseInfo(type: string): Observable<any[]>
+  public getProductsBaseInfo(type: string): Observable<BaseProduct[]>
   {
     return this.http.get<BaseProduct[]>(environment.api_gateway_url+"/product/"+type)
+  }
+
+  public getProduct(type: string, id: string): Observable<any>
+  {
+    return this.http.get<any>(`${environment.api_gateway_url}/product/${type}/${id}`)
   }
 }

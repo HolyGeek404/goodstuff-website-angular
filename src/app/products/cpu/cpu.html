@@ -1,136 +1,148 @@
-<section class="cpu-product">
-  <header class="cpu-product__hero">
-    <div class="cpu-product__meta">
-      <p class="cpu-product__eyebrow">CPU · Desktop</p>
-      <h1 class="cpu-product__title">Example CPU Name</h1>
-      <p class="cpu-product__subtitle">
-        High-efficiency desktop processor tuned for gaming and creation.
-      </p>
-      <div class="cpu-product__badges">
-        <span class="cpu-product__badge">Socket AM5</span>
-        <span class="cpu-product__badge">8 Cores / 16 Threads</span>
-        <span class="cpu-product__badge">Unlocked</span>
+@if (cpuProduct(); as cpu) {
+  <section class="cpu-product">
+    <header class="cpu-product__hero">
+      <div class="cpu-product__meta">
+        <p class="cpu-product__eyebrow">{{ cpu.category }} · {{ cpu.team }}</p>
+        <h1 class="cpu-product__title">{{ cpu.name }}</h1>
+        <p class="cpu-product__subtitle">
+          {{ cpu.additionalInfo }}
+        </p>
+        <div class="cpu-product__badges">
+          <span class="cpu-product__badge">Socket {{ cpu.socket }}</span>
+          <span class="cpu-product__badge">{{ cpu.cores }} Cores / {{ cpu.threads }} Threads</span>
+          <span class="cpu-product__badge">{{ cpu.unlockedMultiplayer }}</span>
+        </div>
+      </div>
+      <div class="cpu-product__purchase">
+        <p class="cpu-product__price-label">Price</p>
+        <p class="cpu-product__price">{{ cpu.price }}</p>
+        <button class="cpu-product__cta" type="button">Add to cart</button>
+        <p class="cpu-product__note">Producer code: {{ cpu.producerCode }}</p>
+      </div>
+    </header>
+
+    <div class="cpu-product__content">
+      <div class="cpu-product__media">
+        <img
+          class="cpu-product__image"
+          [ngSrc]="cpu.productImg"
+          [alt]="cpu.name"
+          width="420"
+          height="320"
+        />
+      </div>
+
+      <div class="cpu-product__stats">
+        <div class="cpu-product__stat">
+          <span>Base / Boost</span>
+          <strong>{{ cpu.frequency }}</strong>
+        </div>
+        <div class="cpu-product__stat">
+          <span>Cache</span>
+          <strong>{{ cpu.cacheMemory }}</strong>
+        </div>
+        <div class="cpu-product__stat">
+          <span>TDP</span>
+          <strong>{{ cpu.tdp }}</strong>
+        </div>
+      </div>
+
+      <div class="cpu-product__overview">
+        <h2>Overview</h2>
+        <p>
+          {{ cpu.additionalInfo }}
+        </p>
       </div>
     </div>
-    <div class="cpu-product__purchase">
-      <p class="cpu-product__price-label">Price</p>
-      <p class="cpu-product__price">$399</p>
-      <button class="cpu-product__cta" type="button">Add to cart</button>
-      <p class="cpu-product__note">In stock · Ships in 24h</p>
-    </div>
-  </header>
 
-  <div class="cpu-product__content">
-    <div class="cpu-product__media">
-      <img
-        class="cpu-product__image"
-        src="assets/placeholder-cpu.png"
-        alt="CPU product image"
-        width="420"
-        height="320"
-      />
-    </div>
+    <section class="cpu-product__specs">
+      <article class="cpu-product__spec-card">
+        <h3>Core Specs</h3>
+        <dl>
+          <div>
+            <dt>Architecture</dt>
+            <dd>{{ cpu.architecture }}</dd>
+          </div>
+          <div>
+            <dt>Cores</dt>
+            <dd>{{ cpu.cores }}</dd>
+          </div>
+          <div>
+            <dt>Threads</dt>
+            <dd>{{ cpu.threads }}</dd>
+          </div>
+          <div>
+            <dt>Frequency</dt>
+            <dd>{{ cpu.frequency }}</dd>
+          </div>
+          <div>
+            <dt>Cache</dt>
+            <dd>{{ cpu.cacheMemory }}</dd>
+          </div>
+        </dl>
+      </article>
 
-    <div class="cpu-product__stats">
-      <div class="cpu-product__stat">
-        <span>Base / Boost</span>
-        <strong>4.2 / 5.1 GHz</strong>
+      <article class="cpu-product__spec-card">
+        <h3>Platform</h3>
+        <dl>
+          <div>
+            <dt>Socket</dt>
+            <dd>{{ cpu.socket }}</dd>
+          </div>
+          <div>
+            <dt>Supported Chipsets</dt>
+            <dd>{{ cpu.supportedChipsets }}</dd>
+          </div>
+          <div>
+            <dt>Supported RAM</dt>
+            <dd>{{ cpu.supportedRam }}</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="cpu-product__spec-card">
+        <h3>Build & Extras</h3>
+        <dl>
+          <div>
+            <dt>Lithography</dt>
+            <dd>{{ cpu.lithography }}</dd>
+          </div>\
+          <div>
+            <dt>Unlocked Multiplier</dt>
+            <dd>{{ cpu.unlockedMultiplayer }}</dd>
+          </div>
+          <div>
+            <dt>Integrated GPU</dt>
+            <dd>{{ cpu.integratedGpuModel || cpu.integratedGpu }}</dd>
+          </div>
+          <div>
+            <dt>Included Cooler</dt>
+            <dd>{{ cpu.includedCooler }}</dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+
+    <section class="cpu-product__footer">
+      <div class="cpu-product__delivery">
+        <h4>Product ID</h4>
+        <p>{{ cpu.id }}</p>
       </div>
-      <div class="cpu-product__stat">
-        <span>Cache</span>
-        <strong>32 MB</strong>
+      <div class="cpu-product__support">
+        <h4>Warranty</h4>
+        <p>{{ cpu.warranty }}</p>
       </div>
-      <div class="cpu-product__stat">
-        <span>TDP</span>
-        <strong>105 W</strong>
-      </div>
-    </div>
-
-    <div class="cpu-product__overview">
-      <h2>Overview</h2>
-      <p>
-        A balanced CPU built for high FPS gaming and efficient multithreaded
-        workflows, with modern platform features and strong thermals.
-      </p>
-    </div>
-  </div>
-
-  <section class="cpu-product__specs">
-    <article class="cpu-product__spec-card">
-      <h3>Core Specs</h3>
-      <dl>
-        <div>
-          <dt>Architecture</dt>
-          <dd>Zen 4</dd>
-        </div>
-        <div>
-          <dt>Cores</dt>
-          <dd>8</dd>
-        </div>
-        <div>
-          <dt>Threads</dt>
-          <dd>16</dd>
-        </div>
-        <div>
-          <dt>Frequency</dt>
-          <dd>4.2 / 5.1 GHz</dd>
-        </div>
-        <div>
-          <dt>Cache</dt>
-          <dd>32 MB</dd>
-        </div>
-      </dl>
-    </article>
-
-    <article class="cpu-product__spec-card">
-      <h3>Platform</h3>
-      <dl>
-        <div>
-          <dt>Socket</dt>
-          <dd>AM5</dd>
-        </div>
-        <div>
-          <dt>Supported Chipsets</dt>
-          <dd>X670 / B650</dd>
-        </div>
-        <div>
-          <dt>Supported RAM</dt>
-          <dd>DDR5</dd>
-        </div>
-      </dl>
-    </article>
-
-    <article class="cpu-product__spec-card">
-      <h3>Build & Extras</h3>
-      <dl>
-        <div>
-          <dt>Lithography</dt>
-          <dd>5 nm</dd>
-        </div>
-        <div>
-          <dt>Unlocked Multiplier</dt>
-          <dd>Yes</dd>
-        </div>
-        <div>
-          <dt>Integrated GPU</dt>
-          <dd>Radeon Graphics</dd>
-        </div>
-        <div>
-          <dt>Included Cooler</dt>
-          <dd>No</dd>
-        </div>
-      </dl>
-    </article>
+    </section>
   </section>
-
-  <section class="cpu-product__footer">
-    <div class="cpu-product__delivery">
-      <h4>Delivery</h4>
-      <p>Free delivery in Poland for orders over $250.</p>
-    </div>
-    <div class="cpu-product__support">
-      <h4>Warranty</h4>
-      <p>36‑month manufacturer warranty.</p>
+} @else {
+  <section class="cpu-product mt-2">
+    <div class="cpu-product__empty">
+      <p class="cpu-product__empty-eyebrow">CPU</p>
+      <h1 class="cpu-product__empty-title">CPU not found</h1>
+      <p class="cpu-product__empty-text">
+        The selected processor does not exist or is no longer available. Try another product or
+        go back to the CPU list.
+      </p>
     </div>
   </section>
-</section>
+}

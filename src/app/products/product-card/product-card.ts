@@ -29,7 +29,7 @@ export class ProductCard implements OnInit{
       this.router.paramMap.pipe(
         map(params => {this.category.set(params.get('category') as string)}),
         switchMap(() => {
-          return this.productService.getProductBaseInfo(this.category())
+          return this.productService.getProductsBaseInfo(this.category())
         }),
         takeUntilDestroyed(this.destroyRef)
       )

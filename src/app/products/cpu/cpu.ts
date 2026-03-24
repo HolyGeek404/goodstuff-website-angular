@@ -4,10 +4,14 @@ import {ProductService} from '../../../services/product-service';
 import {map, switchMap} from 'rxjs';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {CpuModel} from '../../../models/product/CpuModel';
+import {ProductTypes} from '../../../models/product/ProductTypes';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-cpu',
-  imports: [],
+  imports: [
+    NgOptimizedImage
+  ],
   templateUrl: './cpu.html',
   styleUrl: './cpu.css',
 })
@@ -20,10 +24,10 @@ export class Cpu implements OnInit {
     this.router.paramMap.pipe(
       map(params => params.get('id')),
       switchMap((id) => {
-        return this.productService.getProductBaseInfo(id)
+        return this.productService.getProduct(ProductTypes.CPU,id!)
       }),
       takeUntilDestroyed(this.destroyRef)
     )
-      .subscribe(result => {this.products.set(result);});
+      .subscribe(result => {this.cpuProduct.set(result as CpuModel);});
   }
 }
