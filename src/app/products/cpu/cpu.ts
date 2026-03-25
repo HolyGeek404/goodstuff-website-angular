@@ -1,11 +1,11 @@
-import {Component, DestroyRef, inject, OnInit, signal} from '@angular/core';
+import {Component, DestroyRef, OnInit, signal} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../../../services/product-service';
-import {map, switchMap} from 'rxjs';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {CpuModel} from '../../../models/product/CpuModel';
 import {ProductTypes} from '../../../models/product/ProductTypes';
 import {NgOptimizedImage} from '@angular/common';
+import {loadProduct} from '../../../services/product-helper';
 
 @Component({
   selector: 'app-cpu',
@@ -16,18 +16,17 @@ import {NgOptimizedImage} from '@angular/common';
   styleUrl: './cpu.css',
 })
 export class Cpu implements OnInit {
-  private destroyRef = inject(DestroyRef)
   protected cpuProduct = signal<CpuModel | undefined>(undefined)
-  constructor(private router: ActivatedRoute, private productService: ProductService) {}
 
-  ngOnInit(){
-    this.router.paramMap.pipe(
-      map(params => params.get('id')),
-      switchMap((id) => {
-        return this.productService.getProduct(ProductTypes.CPU,id!)
-      }),
-      takeUntilDestroyed(this.destroyRef)
-    )
-      .subscribe(result => {this.cpuProduct.set(result as CpuModel);});
+  constructor(
+    private router: ActivatedRoute,
+    private productService: ProductService,
+    private destroyRef: DestroyRef
+  ) {}
+
+  ngOnInit() {
+    loadProduct<CpuModel>(ProductTypes.CPU, this.productService, this.router)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(product => this.cpuProduct.set(product));
   }
 }
