@@ -1,9 +1,4 @@
 .category-card {
-  display: grid;
-  gap: 14px;
-  align-content: center;
-  justify-items: center;
-  padding: 18px;
   border-radius: 22px;
   border: 1px solid #c4d2f3;
   background: #f2f6ff;
@@ -22,10 +17,7 @@
 .category-card__icon {
   background: #edf2ff;
   border-radius: 18px;
-  padding: 16px;
   border: 1px solid #c8d6fb;
-  display: grid;
-  place-items: center;
 }
 
 .category-card__label {

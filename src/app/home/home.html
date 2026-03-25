@@ -7,7 +7,7 @@
     </div>
   </header>
 
-  <div class="home__grid">
+  <div class="d-flex flex-wrap justify-content-evenly gap-4">
     @for (cat of categories; track categories) {
       <app-category-card [category]="cat"/>
     }

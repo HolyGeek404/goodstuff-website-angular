@@ -1,6 +1,6 @@
-<a class="category-card" [routerLink]="['products',category()]">
-  <div class="category-card__icon">
+<a class="d-flex flex-column justify-content-evenly category-card" [routerLink]="['products',category()]">
+  <div class="text-center p-3 category-card__icon">
     <img width="96" height="96" ngSrc="{{categoryImgPath()}}" alt="category icon">
   </div>
-  <span class="category-card__label">{{category()}}</span>
+  <span class="text-center category-card__label">{{category()}}</span>
 </a>
