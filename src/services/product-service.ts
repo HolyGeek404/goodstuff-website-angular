@@ -15,8 +15,8 @@ export class ProductService {
     return this.http.get<BaseProduct[]>(environment.api_gateway_url+"/product/"+type)
   }
 
-  public getProduct(type: string, id: string): Observable<any>
+  public getProduct<T>(type: string, id: string): Observable<T>
   {
-    return this.http.get<any>(`${environment.api_gateway_url}/product/${type}/${id}`)
+    return this.http.get<T>(`${environment.api_gateway_url}/product/${type}/${id}`)
   }
 }

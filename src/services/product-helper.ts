@@ -11,6 +11,6 @@ export function loadProduct<T>(
 ): Observable<T> {
   return route.paramMap.pipe(
     map(params => params.get('id')),
-    switchMap(id => productService.getProduct(type, id!))
+    switchMap(id => productService.getProduct<T>(type, id!))
   );
 }
