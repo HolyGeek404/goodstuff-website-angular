@@ -26,5 +26,15 @@ export const routes: Routes = [
     path: 'products/COOLER/:id',
     loadComponent: () =>
       import('./products/cooler/cooler').then(m => m.Cooler)
+  },
+  {
+    path: 'user/sign-in',
+    loadComponent: () =>
+      import('./user/sign-in/sign-in').then(m => m.SignIn)
+  },
+  {
+    path: 'user/dashboard',
+    loadComponent: () =>
+      import('./user/dashboard/dashboard').then(m => m.Dashboard)
   }
 ];

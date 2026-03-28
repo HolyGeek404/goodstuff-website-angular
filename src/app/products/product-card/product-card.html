@@ -8,7 +8,7 @@
   </header>
 
 
-    <div class="d-flex flex-wrap gap-4 mt-5 justify-content-start">
+    <div class="d-flex flex-wrap gap-4 mt-5 justify-content-evenly">
       @for (product of products(); track product.id) {
         <a class="product-card__link" [routerLink]="['/products', category(), product.productId || product.id]">
           <article class="product-card">

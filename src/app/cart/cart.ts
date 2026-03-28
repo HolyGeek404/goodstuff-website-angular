@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
-import {UserSessionService} from '../../services/UserSessionService';
+import {UserSessionService} from '../../services/user-session-service';
 import {User} from '../../models/user/user';
 import {GoodStuffFunctionsService} from '../../services/GoodStuffFunctionsService';
 import {CartItemResponse} from '../../models/cart/CartItemResponse';
@@ -20,9 +20,8 @@ interface CartItem {
   styleUrl: './cart.css'
 })
 export class Cart {
-  private userSession = inject(UserSessionService);
   private functionsService = inject(GoodStuffFunctionsService);
-  user: User | null = this.userSession.getUser();
+  user: User | null = null
   orderState: 'idle' | 'success' | 'error' = 'idle';
 
   cartItems: CartItem[] = [];

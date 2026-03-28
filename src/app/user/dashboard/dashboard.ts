@@ -1,5 +1,5 @@
-import {Component, inject} from '@angular/core';
-import {UserSessionService} from '../../../services/UserSessionService';
+import {Component, signal} from '@angular/core';
+import {UserSessionService} from '../../../services/user-session-service';
 import {User} from '../../../models/user/user';
 
 @Component({
@@ -9,13 +9,12 @@ import {User} from '../../../models/user/user';
   styleUrl: './dashboard.css'
 })
 export class Dashboard {
-  private userSession = inject(UserSessionService)
-  user: User | null = null;
+  user = signal<User|null>(null)
   panels = ['Overview', 'Orders', 'Settings', 'Security', 'Support'];
   activePanel = 'Overview';
 
-  constructor() {
-    this.user = this.userSession.getUser();
+  constructor(userSessionService: UserSessionService) {
+    this.user.set(userSessionService.getUserDataFromLocalStorage())
   }
 
   selectPanel(panel: string): void {
@@ -23,6 +22,6 @@ export class Dashboard {
   }
 
   signOut(): void {
-    this.userSession.signOut();
+
   }
 }

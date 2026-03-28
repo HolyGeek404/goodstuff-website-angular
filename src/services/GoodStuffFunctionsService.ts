@@ -20,18 +20,7 @@ export class GoodStuffFunctionsService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(types: ProductTypes): Observable<BaseProduct[]> {
-    switch (types) {
-      case ProductTypes.CPU:
-        return this.http.get<CpuModel[]>(`${this.baseUrl}Product/CPU`);
-      case ProductTypes.GPU:
-        return this.http.get<GpuModel[]>(`${this.baseUrl}product/GPU`);
-      case ProductTypes.COOLER:
-        return this.http.get<CoolerModel[]>(`${this.baseUrl}product/COOLER`);
-      default:
-        return this.http.get<CpuModel[]>(`${this.baseUrl}product/CPU`);
-    }
-  }
+
 
   getProductFilters(types: ProductTypes): Observable<ProductFilters> {
     return this.http.get<ProductFilters>(`${this.baseUrl}product/${types}/filters`);
@@ -40,22 +29,12 @@ export class GoodStuffFunctionsService {
   signIn(email: string, password: string): Observable<string> {
     return this.http.post(`${this.baseUrl}user/signin`, {email, password}, this.authOptions);
   }
-  signOut(): Observable<string> {
-    return this.http.post(`${this.baseUrl}user/signout`, {}, this.authOptions);
-  }
-  getCurrentUser(): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}user/me`, { withCredentials: true });
-  }
   signUp(signUp: SignUpRequest): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}user/signup`, signUp);
   }
   accountVerification(accVerf: AccountVerificationRequest): Observable<boolean>{
     return this.http.post<boolean>(`${this.baseUrl}user/accountverification`, accVerf);
 
-  }
-
-  addToCart(command: AddCartCommand): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}cart`, command);
   }
 
   getCart(userId: string): Observable<CartItemResponse[]> {

@@ -1,7 +1,7 @@
-import {Component, computed, inject} from '@angular/core';
+import {Component, OnInit, signal} from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
 import {RouterLink} from '@angular/router';
-import {UserSessionService} from '../../services/UserSessionService';
+import {UserSessionService} from '../../services/user-session-service';
 
 @Component({
   selector: 'app-nav',
@@ -12,7 +12,15 @@ import {UserSessionService} from '../../services/UserSessionService';
   templateUrl: './nav.html',
   styleUrl: './nav.css'
 })
-export class Nav {
-  private userSession = inject(UserSessionService);
-  isSignedIn = computed(() => !!this.userSession.getUser());
+export class Nav implements OnInit {
+  isLoggedIn = signal<boolean>(false);
+
+  constructor(private userSessionService: UserSessionService) {
+  }
+
+  ngOnInit() {
+    const result = this.userSessionService.checkSession().subscribe(session => {
+      this.isLoggedIn.set(session);
+    });
+  }
 }

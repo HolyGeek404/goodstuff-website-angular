@@ -2,7 +2,7 @@
   <header class="dashboard__hero">
     <div>
       <p class="dashboard__eyebrow">Your account</p>
-      <h1>Hey {{user?.name || user?.email || 'there'}}</h1>
+      <h1>Hey {{user()?.name || user()?.email || 'there'}}</h1>
       <p class="dashboard__subhead">Manage your profile, track orders, and keep everything tidy.</p>
     </div>
     <button class="dashboard__signout" (click)="signOut()">Sign out</button>
@@ -29,7 +29,7 @@
             <div class="panel__cards">
               <div class="panel__card">
                 <h3>Profile</h3>
-                <p>Email: {{user?.email || 'Not set'}}</p>
+                <p>Email: {{user()?.email || 'Not set'}}</p>
               </div>
               <div class="panel__card">
                 <h3>Orders</h3>

@@ -9,7 +9,7 @@
   </div>
 
   <div class="site-nav__actions">
-    <a class="site-nav__icon" [routerLink]="isSignedIn() ? ['user/dashboard'] : ['user/sign-in']" aria-label="User account">
+    <a class="site-nav__icon" [routerLink]="isLoggedIn() ? ['user/dashboard'] : ['user/sign-in']" aria-label="User account">
       <i class="fas fa-user"></i>
     </a>
     <a class="site-nav__icon" [routerLink]="['/cart']" aria-label="Shopping cart">

@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {GoodStuffFunctionsService} from '../../../services/GoodStuffFunctionsService';
 import {Router, RouterLink} from '@angular/router';
+import {UserSessionService} from '../../../services/user-session-service';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,11 +15,9 @@ import {Router, RouterLink} from '@angular/router';
   styleUrl: './sign-in.css'
 })
 export class SignIn {
-  private functionsService = inject(GoodStuffFunctionsService);
   public stateMsg: string | null = null;
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router, private userSessionService: UserSessionService) {  }
 
   ngOnInit() {
     const state = history.state as { message?: string };
@@ -47,9 +46,9 @@ export class SignIn {
 
   onSubmit() {
     if (this.validate() && this.signInForm.valid) {
-      this.functionsService.signIn(this.signInForm.controls.email.value!, this.signInForm.controls.password.value!).subscribe({
-        next: () => {
-          this.router.navigate(['/user/dashboard']);
+      this.userSessionService.signIn(this.signInForm.controls.email.value!, this.signInForm.controls.password.value!).subscribe({
+        next: (result) => {
+            this.router.navigate(['/user/dashboard']);
         },
         error: (err) => console.error(`Error signing in.`, err)
       });
